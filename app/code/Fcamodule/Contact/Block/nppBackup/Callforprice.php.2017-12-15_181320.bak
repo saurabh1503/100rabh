@@ -1,0 +1,24 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace Emizentech\Callforprice\Block;
+/**
+ * Product price block
+ */
+class Callforprice extends \Magento\Catalog\Pricing\Render\FinalPriceBox 
+{
+  
+     /**
+     * Wrap with standard required container
+     *
+     * @param string $html
+     * @return string
+     */
+    public function wrapResult($html)
+    {
+   		echo "hiiiiiiiiiiiiiii";
+    }
+    
+}

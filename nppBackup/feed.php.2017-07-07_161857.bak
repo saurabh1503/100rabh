@@ -1,0 +1,25 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+	
+	$prod=$objectManager->get('\Magento\Catalog\Model\ProductFactory')->create();
+	$p = $prod->getId();
+	
+	echo "<pre>";
+	print_r($p);
+	die();
+	
+
+
+
+?>
+
+
+
+

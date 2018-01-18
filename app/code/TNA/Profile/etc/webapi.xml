@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="POST" url="/V1/tna-profile/ice">
+		<service class="TNA\Profile\Api\ICERepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="TNA_Profile::ICE_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/tna-profile/search">
+		<service class="TNA\Profile\Api\ICERepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="TNA_Profile::ICE_view"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/tna-profile/:iceId">
+		<service class="TNA\Profile\Api\ICERepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="TNA_Profile::ICE_view"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/tna-profile/:iceId">
+		<service class="TNA\Profile\Api\ICERepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="TNA_Profile::ICE_update"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/tna-profile/:iceId">
+		<service class="TNA\Profile\Api\ICERepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="TNA_Profile::ICE_delete"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/tna-profile/archive">
+		<service class="TNA\Profile\Api\ArchiveRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="TNA_Profile::Archive_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/tna-profile/:archiveId">
+		<service class="TNA\Profile\Api\ArchiveRepositoryInterface" method="getById"/>
+		<resources>
+			<resource ref="TNA_Profile::Archive_view"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/tna-profile/:archiveId">
+		<service class="TNA\Profile\Api\ArchiveRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="TNA_Profile::Archive_update"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/tna-profile/:archiveId">
+		<service class="TNA\Profile\Api\ArchiveRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="TNA_Profile::Archive_delete"/>
+		</resources>
+	</route>
+</routes>

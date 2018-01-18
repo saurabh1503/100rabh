@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+    <add id="TNA::profile" module="TNA_Profile"  resource="Magento_Backend::content" sortOrder="25" title="Profile"/>
+
+		<add action="tna_profile/ice/index" id="TNA::tna_ice" module="TNA_Profile" parent="TNA::profile" resource="Magento_Backend::content" sortOrder="9999" title="ICE"/>
+		<add action="tna_profile/archive/index" id="TNA::tna_archive" module="TNA_Profile" parent="TNA::profile" resource="Magento_Backend::content" sortOrder="9999" title="Archive"/>
+		<add action="tna_profile/curriculum/index" id="TNA::tna_curriculum" module="TNA_Profile" parent="TNA::profile" resource="Magento_Backend::content" sortOrder="9999" title="Curriculum"/>
+	</menu>
+</config>
+

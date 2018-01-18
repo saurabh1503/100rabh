@@ -1,0 +1,52 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+$categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+$imgurl= $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product';
+$collection = $productCollection->create()
+            ->addAttributeToSelect('*')
+			->addAttributeToFilter('status', ['in' => $this->productStatus->getVisibleStatusIds()])
+			// ->addAttributeToSort('created_at', 'ASC')
+            //->setPageSize(10)
+            ->load();
+
+$filePath = 'nextopia-feed.csv';
+if (file_exists($filePath)) {
+    $fh = fopen($filePath, 'a');     
+} else {
+    $fh = fopen($filePath, 'w');
+}  
+
+$header1 = array('id','title','link','image_link','price','description');
+ 
+fputcsv($fh, $header1); 
+
+foreach($collection as $product){
+
+$rowNew = array();
+$rowNew['id'] = $product->getSku();
+$rowNew['title'] = $product->getName();
+$rowNew['link'] = $product->getProductUrl();
+$rowNew['image_link'] = $imgurl.$product->getImage();
+$rowNew['price'] = $product->getPrice();
+$rowNew['description'] = $product->getDescription();
+
+fputcsv($fh, $rowNew);
+
+ }
+
+fclose($fh);
+exit();
+
+?>
+
+
+

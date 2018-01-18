@@ -1,0 +1,45 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+	
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+$collection = $productCollection->create()
+            ->addAttributeToSelect('*')
+            ->load();
+
+        $filename = 'obj.txt';
+foreach ($collection as $product){
+        // create content
+        $content =
+        'id' . print_r($product->getId(), true) . 
+        ' title' . print_r($product->getMetaTitle(), true) . 
+        ' description' . print_r($product->getDescription(), true) . 
+        ' link' . print_r($product->getProductUrl(), true) . 
+        ' price' . print_r($product->getPrice(), true). 
+        ' brand' . print_r($product->getName(), true) . 
+        ' mpn' . print_r($product->getManufacturerSku(), true) . 
+        ' condition' . print_r($product->getName(), true) . 
+        ' product_type' . print_r($product->getTypeId(), true) . 
+        ' image_link' . print_r($product->getImage(), true) . 
+        ' google_product_category' . print_r($product->getCategoryId(), true) . 
+        ' availability' . print_r($product->getAvailabilty(), true) . 
+        ' shipping' . print_r($product->getShipping(), true) . 
+        ' shipping_weight' . print_r($product->getWeight(), true);
+
+
+       
+        file_put_contents($filename, $content);
+
+}
+echo 'done';
+?>
+
+
+

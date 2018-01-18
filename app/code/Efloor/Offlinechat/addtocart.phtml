@@ -1,0 +1,230 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_product = $block->getProduct(); 
+$calculator = $block->checkCalculator();
+
+$product_type_array = array(1,8,10);
+$pproducttype = $_product->getResource()->getAttribute('pproducttypeid')->getFrontend()->getValue($_product);
+$product_type_avail = in_array($pproducttype,$product_type_array);
+
+//$customer = $block->checkCustomer();
+
+/*** Get Customer Group ***/
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create('Magento\Customer\Model\Session');
+$customer = '';
+if($customerSession->isLoggedIn()) {
+  $customer = $customerSession->getCustomer()->getGroupId();
+}
+ 
+/***   End ***/
+
+$pshowprice = $_product->getResource()->getAttribute('pshowprice')->getFrontend()->getValue($_product);
+$customerisnot = $block->customerNotInGroup();
+
+$psfpercarton = $block->checkPsfPerCarton();
+
+?>
+ 
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div class="box-tocart">
+        <div class="fieldset">        
+         <?php $soldby = $_product->getResource()->getAttribute('sold_by')->getFrontend()->getValue($_product); ?>
+            <?php
+            $availability = $_product->getResource()->getAttribute('sold_by');
+            $availabilityALablesold = $availability->getStoreLabel();
+            $availabilitysold = $_product->getResource()->getAttribute('sold_by')->getFrontend()->getValue($_product);
+
+             // if ($calculator || $customer) {
+				if ($availabilitysold != '') {
+			    if (($calculator && $product_type_avail == false) || ($customer == 4 && $product_type_avail == false)) {
+				$calculatorImage = $block->getViewFileUrl('images/calculator.png');
+				echo "<img src= $calculatorImage /><br><br>";
+				}
+				if ($pproducttype != 1 && $pproducttype != 8) {
+                echo "<strong><span>$availabilityALablesold</span></strong>";
+               //echo " $ ";
+               echo " : ";
+                echo $_product->getResource()->getAttribute('sold_by')->getFrontend()->getValue($_product);
+                echo "&nbsp;";
+                echo "SQ FT PER CARTON";
+                echo '<br><br>';
+				}
+				   
+                /* @escapeNotVerified */
+              }  //} else if($customerisnot) {
+			  
+			  // echo "<strong><span>$availabilityALablesold</span></strong>";
+			  // echo ': Please call 1-888-522-5456';
+			  //}
+			  
+			  else if ($availabilitysold != '' && ($pproducttype != 1 && $pproducttype != 8  && $pproducttype != 10)) {
+                echo "<strong><span>$availabilityALablesold</span></strong>";
+               // echo " $ ";
+                echo " : ";
+                echo $_product->getResource()->getAttribute('sold_by')->getFrontend()->getValue($_product);
+                echo "&nbsp;";
+                echo "SQ FT PER CARTON";
+                echo '<br>';
+                /* @escapeNotVerified */
+              }
+                  
+              //echo $calculator;    
+              
+            ?>
+            
+			<?php if(($calculator && $product_type_avail == false ) || ($customer == 4 && $product_type_avail == false)) { ?>
+            <div class="controls">
+                <div>
+                    <input type="hidden" id="soldby" name="soldby" value="<?php echo $soldby; ?>">
+                    <div class="quantity-container sf">
+                        <div class="boxes">
+						<table>
+						<tr>
+						<td class="font-custome-bold width-93 padding-top-8"><?php /* @escapeNotVerified */ echo __('SQ FT:') ?></td>
+						<td> <input type="text" name="sqft" id="sqft" maxlength="12" onkeyup="calSqFt()" title="SQ FT" class="input-text sqft"/></td>
+						</tr>
+						<tr>
+						<td class="font-custome-bold width-93 padding-top-8"><?php /* @escapeNotVerified */ echo __('Carton(s):') ?></td>
+						<td> <input type="text" name="qty" id="qty" maxlength="12" onkeyup="calCarton()" title="<?php /* @escapeNotVerified */ echo __('Carton(s)') ?>" class="input-text qtyy" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/></td>
+						</tr>
+						</table>
+                           
+                        </div>
+                    </div>
+
+
+
+                    <br>
+
+
+                </div>
+            </div>
+
+          
+
+            <script type="text/javascript">
+					var soldby = document.getElementById("soldby").value;
+					var sfPerQty = parseFloat(soldby);
+					
+					function calCarton(){
+						 var qty = document.getElementById("qty").value;
+						 var newCarton = parseFloat(new Number(Math.ceil(qty) * sfPerQty).toFixed(4)).toString();
+						 document.getElementById("sqft").value = newCarton;
+					}
+					
+					function calSqFt(){
+						 var sqft = document.getElementById("sqft").value;
+						 var newSqft = Math.ceil(new Number(sqft / sfPerQty).toFixed(8)).toString();
+						 document.getElementById("qty").value = newSqft;
+					}
+
+            </script>
+			
+			
+			<?php  } //else if ($block->shouldRenderQuantity() || !empty($customer)) { 
+			else if ($pshowprice == 1 || ($customer ==4 || $pproducttype == 1)) {
+		   
+		   ?>
+                              <div class="field qty">
+                                    <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?></span></label>
+                                    <div class="control">
+                                        <input type="text"
+                                               name="qty"
+                                               id="qty"
+                                               maxlength="12"
+                                               value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                                               title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
+                                               data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                                               />
+                                    </div>
+                               
+            <?php } ?>
+			
+			<?php if($calculator || $customer ==4 || $pproducttype == 1 || $pshowprice == 1) {   ?> 
+			<div class="action-buttons" style="overflow:hidden;">
+            <div class="actions" style="float:left;width:auto;">
+                <button type="submit"
+                        title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button">
+                    <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span>
+                </button>
+                <?php echo $block->getChildHtml('', true) ?>
+            </div>
+			<?php  } else if($customerisnot) { ?>
+			
+			<?php  } else { ?>
+ <!--<div class="actions">
+                <button type="submit"
+                        title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button">
+                    <span><?php /* @escapeNotVerified */ echo $buttonTitle ?></span>
+                </button>
+
+                <?php echo $block->getChildHtml('', true) ?>
+            </div>
+	
+-->
+			<?php } ?>
+            
+            <div class="actions">
+				<?php   $attribute = $_product->getResource()->getAttribute('sample_sku');
+						$attribute_value = $attribute ->getFrontend()->getValue($_product);
+						$psell = $_product->getPsell();
+				?>
+				<?php if (!empty($attribute_value) && isset($attribute_value) && $psell == 1): ?>
+				<button type="button" class="action primary tocart1" style="padding:10px 26px 8px;" onclick="window.location.href =  window.location.origin+'/addsample/index/index/?sku=<?php echo $_product->getSku() ?>'" title="Request Sample for <?php echo $block->escapeHtml($_product->getName()); ?>" class="button btn-cart" ><span>99¢ SAMPLE</span></button>
+				<?php endif; ?>
+                <!--<a onclick="window.open('http://www.efloors.com/offline-chat.aspx', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');" class="submit-chat-click">CLICK HERE TO <img style="margin-top: 10px; cursor:pointer;" src=<?php //echo $this->getViewFileUrl('images/product-detail-click-to-chat.png'); ?> /></a>-->
+            </div>  
+					</div>
+					<div style="font-family: Teko,sans-serif; width:100%;margin-top:15px;"><p style="width:65px;float:left;margin-top: 20px;">CLICK HERE TO </p><div style="width:100px;float: left;" class="greet welcome submit-chat">
+						<span style="cursor:pointer" class="live-chat">Live Chat </span>
+					</div><p style="float:left;margin-top: 20px;"> WITH A FLOORING EXPERT</p></div>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+    <script type="text/x-magento-init">
+        {
+        "#product_addtocart_form": {
+        "Magento_Catalog/product/view/validation": {
+        "radioCheckboxClosest": ".nested"
+        }
+        }
+        }
+    </script>
+<?php else : ?>
+    <script>
+        require([
+            'jquery',
+            'mage/mage',
+            'Magento_Catalog/product/view/validation',
+            'Magento_Catalog/js/catalog-add-to-cart'
+        ], function($) {
+            'use strict';
+
+            $('#product_addtocart_form').mage('validation', {
+                radioCheckboxClosest: '.nested',
+                submitHandler: function(form) {
+                    var widget = $(form).catalogAddToCart({
+                        bindSubmit: false
+                    });
+
+                    widget.catalogAddToCart('submitForm', $(form));
+
+                    return false;
+                }
+            });
+        });
+    </script>
+<?php endif; ?>

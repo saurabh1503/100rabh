@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<virtualType name="TNA\Profile\Model\ResourceModel\ICE\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">tna_ice</argument>
+			<argument name="resourceModel" xsi:type="string">TNA\Profile\Model\ResourceModel\ICE\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="tna_ice_grid_data_source" xsi:type="string">TNA\Profile\Model\ResourceModel\ICE\Grid\Collection</item>
+				<item name="tna_archive_grid_data_source" xsi:type="string">TNA\Profile\Model\ResourceModel\Archive\Grid\Collection</item>
+				<item name="tna_curriculum_grid_data_source" xsi:type="string">TNA\Profile\Model\ResourceModel\Curriculum\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="TNA\Profile\Api\ICERepositoryInterface" type="TNA\Profile\Model\ICERepository"/>
+	<preference for="TNA\Profile\Api\Data\ICEInterface" type="TNA\Profile\Model\ICE"/>
+	<preference for="TNA\Profile\Api\Data\ICESearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="TNA\Profile\Model\ResourceModel\Archive\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">tna_archive</argument>
+			<argument name="resourceModel" xsi:type="string">TNA\Profile\Model\ResourceModel\Archive\Collection</argument>
+		</arguments>
+	</virtualType>
+	<preference for="TNA\Profile\Api\ArchiveRepositoryInterface" type="TNA\Profile\Model\ArchiveRepository"/>
+	<preference for="TNA\Profile\Api\Data\ArchiveInterface" type="TNA\Profile\Model\Archive"/>
+	<preference for="TNA\Profile\Api\Data\ArchiveSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	
+	<virtualType name="TNA\Profile\Model\ResourceModel\Curriculum\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">tna_curriculum</argument>
+			<argument name="resourceModel" xsi:type="string">TNA\Profile\Model\ResourceModel\Curriculum\Collection</argument>
+		</arguments>
+	</virtualType>
+	<preference for="TNA\Profile\Api\CurriculumRepositoryInterface" type="TNA\Profile\Model\CurriculumRepository"/>
+	<preference for="TNA\Profile\Api\Data\CurriculumInterface" type="TNA\Profile\Model\Curriculum"/>
+	<preference for="TNA\Profile\Api\Data\CurriculumSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+  <!--<type name="Magento\Customer\Api\AccountManagementInterface">
+    <plugin disabled="false" name="tna-profile-plugin-magento-customer-model-accountmanagement" sortOrder="1" type="TNA\Profile\Plugin\Magento\Customer\Model\AccountManagement"/>
+  </type>-->
+  <type name="Magento\Customer\Controller\Account\CreatePost">
+    <plugin disabled="false" name="tna-profile-plugin-magento-customer-controller-account-createpost" sortOrder="1" type="TNA\Profile\Plugin\Magento\Customer\Controller\Account\CreatePost"/>
+  </type>
+</config>

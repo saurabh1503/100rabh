@@ -1,0 +1,17 @@
+<?php
+$myServer = "12.207.213.14";
+$myUser = "chetu";
+$myPass = "ch3tuf0ry0u";
+$myDB = "efloors_backend_test";
+
+$conn = mssql_connect($myServer,$myUser,$myPass);
+if (!$conn)
+{ 
+  die('Not connected : ' . mssql_get_last_message());
+} 
+$db_selected = mssql_select_db($myDB, $conn);
+if (!$db_selected) 
+{
+  die ('Can\'t use db : ' . mssql_get_last_message());
+} 
+?>

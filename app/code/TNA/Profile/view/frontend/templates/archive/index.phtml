@@ -1,0 +1,145 @@
+<section>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-12 profile-page-right-col">
+
+                <h1>Archive</h1>
+
+                <ul class="tabs">
+                    <li class="tab-link current" data-tab="tab-1">Documents</li>
+                    <li class="tab-link" data-tab="tab-2">Courses</li>
+                </ul>
+
+                <div id="tab-1" class="tab-content current">
+                    <form action="#">
+
+                        <div class="search-wrapper">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <input type="text" placeholder="Search">
+                        </div>
+
+                    </form>
+
+                    <div class="tg-wrap">
+                        <table id="tg-zolIo" class="tg sortable">
+                            <tr>
+                                <th class="tg-031e"></th>
+                                <th class="tg-031e">Document Name</th>
+                                <th class="tg-031e">Subject</th>
+                                <th class="tg-031e">Course</th>
+                                <th class="tg-031e"></th>
+                            </tr>
+                            <?php foreach ($block->getDocuments() as $key => $document) : ?>
+
+                            <tr>
+                                <td class="tg-031e"><i class="fa fa-plus" aria-hidden="true"></i></td>
+                                <td class="tg-031e"><?php echo __($document->DOC_NAME) ?></td>
+                                <td class="tg-031e"><?php echo __($document->SUBJECT) ?></td>
+                                <td class="tg-031e"><?php echo __($document->COURSE_NAME) ?></td>
+                                <td class="tg-031e"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></td>
+                            </tr>
+                            <?php endforeach; ?>
+
+                        </table>
+                    </div>
+                    <ul class="pagination">
+                        <li class="pagination-prev"><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                        <li><a class="current" href="#">1</a></li>
+                        <li>...</li>
+                        <li><a href="#">4</a></li>
+                        <li><a class="current" href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li>...</li>
+                        <li><a href="#">10</a></li>
+                        <li class="pagination-next"><a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <div id="tab-2" class="tab-content">
+
+                    <form action="#">
+
+                        <div class="search-wrapper">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <input type="text" placeholder="Search">
+                        </div>
+
+                    </form>
+
+                    <div class="text-box">
+                        <p><strong>Commercial Property Institute</strong></p>
+                        <p>5/13/16<br>Las Vegas, Nevada</p>
+                        <p>Result: Cancelled</p>
+                        <p>CIC/CRM:<br>CISR/CSRM Update:</p>
+                    </div>
+
+                    <div class="text-box">
+                        <p><strong>Commercial Property Institute</strong></p>
+                        <p>5/13/16<br>Las Vegas, Nevada</p>
+                        <p>Result: Cancelled</p>
+                        <p>CIC/CRM:<br>CISR/CSRM Update:</p>
+                    </div>
+
+                    <div class="text-box">
+                        <p><strong>Commercial Property Institute</strong></p>
+                        <p>5/13/16<br>Las Vegas, Nevada</p>
+                        <p>Result: Cancelled</p>
+                        <p>CIC/CRM:<br>CISR/CSRM Update:</p>
+                    </div>
+
+                    <div class="text-box">
+                        <p><strong>Commercial Property Institute</strong></p>
+                        <p>5/13/16<br>Las Vegas, Nevada</p>
+                        <p>Result: Cancelled</p>
+                        <p>CIC/CRM:<br>CISR/CSRM Update:</p>
+                    </div>
+
+                    <div class="text-box">
+                        <p><strong>Commercial Property Institute</strong></p>
+                        <p>5/13/16<br>Las Vegas, Nevada</p>
+                        <p>Result: Cancelled</p>
+                        <p>CIC/CRM:<br>CISR/CSRM Update:</p>
+                    </div>
+
+                    <div class="text-box">
+                        <p><strong>Commercial Property Institute</strong></p>
+                        <p>5/13/16<br>Las Vegas, Nevada</p>
+                        <p>Result: Cancelled</p>
+                        <p>CIC/CRM:<br>CISR/CSRM Update:</p>
+                    </div>
+
+                    <ul class="pagination">
+                        <li class="pagination-prev"><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                        <li><a class="current" href="#">1</a></li>
+                        <li>...</li>
+                        <li><a href="#">4</a></li>
+                        <li><a class="current" href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li>...</li>
+                        <li><a href="#">10</a></li>
+                        <li class="pagination-next"><a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div><!-- Row -->
+    </div><!-- Container -->
+</section>
+<script type="text/javascript">
+        requirejs(['jquery'],
+        function ($) {
+            $(document).ready(function() {
+                $('ul.tabs li').click(function(){
+                    var tab_id = $(this).attr('data-tab');
+
+                    $('ul.tabs li').removeClass('current');
+                    $('.tab-content').removeClass('current');
+
+                    $(this).addClass('current');
+                    $("#"+tab_id).addClass('current');
+                })
+            });
+        });
+</script>

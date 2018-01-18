@@ -1,0 +1,155 @@
+<?php
+const PARAM_NAME_BASE64_URL = 'r64';
+const PARAM_NAME_URL_ENCODED = 'uenc';
+use Magento\Framework\App\Action\Action; 
+ $_productCollection = $block->getProductCollection();
+//echo '<pre>';print_r($_productCollection);
+$count = count($_productCollection);
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+$additionalProduct  = $block->getMembershipProductDetail();
+$additionalProduct = $additionalProduct->loadByAttribute('sku', 'membership_academy');
+//echo '<pre>';print_r($additionalProduct->getData());
+
+$productId = $additionalProduct->getEntityId();
+?>
+<div class="container">
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-12">
+			<h3>Dues/Membership</h3>
+			
+			 
+			  <form action ="addProducttocart" method="post">
+			  <ul class="clearfix">
+			    <?php
+				if($_productCollection != '') {
+					$abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct'); 
+					foreach ($_productCollection as $_product){ ?>
+					<?php
+					$imageUrl = '';
+					$sku = $_product->getSku();
+					$sku = preg_replace('/[^a-zA-Z]/', '', $sku);
+					switch( $sku ){
+					case 'DCIC':
+						$imageUrl = $this->getUrl('pub/media/wysiwyg/').'cic-logo-white-background.gif';
+						break;
+					case 'DCISR':
+						$imageUrl = $this->getUrl('pub/media/wysiwyg/').'cisr.gif';
+						break;
+					case 'DCRM':
+						$imageUrl = $this->getUrl('pub/media/wysiwyg/').'CRM-logo.gif';
+						break;
+					case 'DCSRM':
+						$imageUrl = $this->getUrl('pub/media/wysiwyg/').'CSRM-logo.gif';
+						break;
+					case 'DCPRM':
+						$imageUrl = $this->getUrl('pub/media/wysiwyg/').'cprm-logo.gif';
+						break;
+					case 'DACF':
+						$imageUrl = $this->getUrl('pub/media/wysiwyg/').'cprm-logo.gif';
+						break;
+					case 'DACR':
+						$imageUrl = $this->getUrl('pub/media/wysiwyg/').'cprm-logo.gif';
+						break;			
+						
+					}
+				
+				?>
+				
+					<li>
+						<div class="membership_products">
+						<img src="<?php echo $imageUrl; ?>" alt="<?php echo $imageUrl; ?>" />
+                        <p><input class = "dues_product" type="checkbox" name="product_ids[]" value="<?php echo $_product->getId();?>"> <span><?php echo $_product->getName();?></span></p>
+					    </div>
+					</li> 
+				
+				<?php } ?>
+				 </ul> 
+			   
+			    <ul class="duemember_products"> 
+					<li>
+					<div class="membership_products">
+					<?php $academyLogo = $this->getUrl('pub/media/wysiwyg/').'Academy-Logo.svg';?>
+					<img src="<?php echo $academyLogo; ?>" alt="<?php echo 'Academy-Logo.svg'; ?>" />
+					<p><input class = "dues_product add_product" id="membership" type="checkbox" name="product_ids[]" value ="<?php echo $block->getMembershipProductData();?>"><span><?php echo $additionalProduct->getName();?></span></p>					
+					</li>
+					</div>
+				</ul> 	
+				<?php } else {  ?>
+				<p><?php echo "You don't have any designation.";?></p>
+				<?php } ?>
+				<p>Your CIC dues will be up for renewal on January 30, 2017.</p>
+				<div class="pulled-text">
+					<p>This text is in a separate div that will be pulled from elsewhere</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et diam congue urna euismod mattis. Vestibulum pulvinar risus viverra augue tristique lobortis. Aliquam quis rhoncus libero. Nam aliquet dictum lorem ac faucibus. Proin scelerisque condimentum neque, non egestas sem scelerisque at. Nam volutpat dolor eget felis sagittis tempus. Nunc quis purus scelerisque, ultricies metus in, tristique ex. Maecenas vestibulum diam nec laoreet volutpat. Curabitur maximus arcu sit amet enim viverra porttitor. Suspendisse turpis lorem, egestas quis justo vel, commodo placerat dolor. Vivamus mollis dolor eros, non commodo dolor pharetra eget. Sed ac purus blandit, dignissim est non, vestibulum est. Praesent vehicula facilisis turpis. Suspendisse potenti. Sed eleifend dignissim augue egestas ornare.</p>
+					<p>Etiam imperdiet risus id fringilla rutrum. Morbi posuere orci quis libero eleifend, ut rhoncus purus tempus. Aenean auctor posuere massa a sagittis. Aliquam aliquet diam quis vulputate rhoncus. Pellentesque non elit diam. Mauris pharetra interdum viverra. Aenean et sodales leo, sit amet auctor lorem. Donec aliquet massa eu est tristique varius. Duis ut venenatis dui, in aliquam tellus. Ut non eleifend nunc. Nullam aliquet libero id turpis blandit, vel aliquet felis ullamcorper. Phasellus fermentum risus id magna laoreet, eget semper arcu fermentum.</p>
+				</div>
+				 <div class="center-this-container">
+					 <!--<a href="products" class="main-button blue-button">Pay Dues Now</a>-->
+                    <input type ="submit" class="submit" value ="Pay Dues Now" id ="membership_paydues" disabled = disabled>
+					 </form>
+					 <a href="#divForm" id="btnForm" class="main-button blue-button fancybox">Remind Me</a>
+					<div id ="divForm" style="display:none;">
+					 
+					<div id="dialogContent">
+					 <form action = "" method ="post" class="padding15">
+					 
+					  <div class="field form-group row">
+						  <label class="label col-md-3">When</label>
+						  <div class="control col-md-9">
+							  <!--<input type="radio" name="when_notity" value="30" checked> 30 Days
+							  <input type="radio" name="when_notity" value="60"> 60 Days
+							  <input type="radio" name="when_notity" value="90"> 90 Days-->
+							  <select class="">
+								<option value="30">30 Days</option>
+								<option value="60">60 Days</option>
+								<option value="90">90 Days</option>
+							  </select>
+						</div>
+					  </div>
+					<div class="field form-group row">
+						 <label class="label col-md-3">How</label>
+						  <div class="control col-md-9">
+							  <input type="radio" name="when_notity" value="text" checked> Text
+							  <input type="radio" name="when_notity" value="email"> Email
+						</div>
+					  </div>
+					<div class="buttons">
+						 <input type="submit" value="submit" class ="notification btn primary action capitalize">
+					</div>
+					
+					
+					 </form> 
+					</div>
+
+				</div>
+		</div>
+	</div><!-- Row -->
+</div><!-- Container -->
+
+<script type="text/javascript">
+    require([ 'jquery', 'jquery/ui','vesbaseFancybox'],  function( $ ) {
+	
+	 $("#btnForm").fancybox();
+	 /*$( ".dues_product" ).each(function(index) {
+     $(this).on("change", function(){
+	 if( $(this).is(':checked') ) {
+	    $('.duemember_products').find('.add_product').removeAttr('disabled');
+	 }
+	 else if ($(".dues_product:checked").length == 0) {
+	   $('.duemember_products').find('.add_product').attr('disabled', 'disabled');
+	   $('.duemember_products').find('.add_product').attr('checked', false);
+	 }
+	 });
+	 });*/
+	 $('.dues_product').on("change", function(){
+	 if( $(this).is(':checked') ) {
+	    $('#membership_paydues').removeAttr('disabled');
+	 }
+	 else if ($(".dues_product:checked").length == 0) {
+	    $('#membership_paydues').attr('disabled', 'disabled');
+	 }
+	 });
+	});
+</script>

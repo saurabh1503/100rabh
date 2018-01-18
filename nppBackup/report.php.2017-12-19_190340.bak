@@ -1,0 +1,70 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+$date = date('Y-m-d H:i:s');
+$fromDate = date('Y-m-d H:i:s', strtotime($date .' -1 day'));
+$strtmonth =date('Y-m-01 H:i:s',strtotime('this month'));
+$dates = array($fromDate,$strtmonth);
+$info='';
+foreach($dates as $from){
+$ordercollection = $objectManager->get('\Magento\Sales\Model\ResourceModel\Order\CollectionFactory')->create();
+$collection = 	$ordercollection->addAttributeToSelect('*')
+								->addFieldToFilter('created_at', array('from'=>$from, 'to'=>$date))
+								->addFieldToFilter('status', array('nin' => array('cancelled')));
+								
+											
+
+$total = 0;
+$sample =0;	
+$allqty=0;
+$sampleqty=0;	
+				
+ foreach($collection as $order){
+	 $totalqty = $order->getData('total_qty_ordered');
+	 $grandtotal = $order->getData('grand_total');
+	 $subtotal = $order->getData('subtotal');
+
+
+	 
+	 if ($subtotal == 0.99){
+		 $samplesum = $order->getData('grand_total');
+		 $sample += $samplesum;
+		 $sampleqty += $totalqty;
+		 
+	 }
+	 else{
+		 	 $total += $grandtotal;
+			$allqty += $totalqty;
+	 }
+
+ }
+ 
+$info = '<div class="test">'.$total.'</div>';
+echo $from. '<br/>';
+echo $total. '<br/>';
+echo $allqty. '<br/>';
+echo $sample. '<br/>';
+echo $sampleqty. '<br/>';
+echo $info;
+}
+// $transportBuilder = $objectManager->create('\Magento\Framework\Mail\Template\TransportBuilder');
+				// $transport = $transportBuilder
+				// ->setToName('Saurabh')
+				// ->setBody($info)
+				// ->setSubject('Efloors.com Automated Email System')
+				// ->setFromEmail('abhisheks4@chetu.com')
+				// ->setToEmail('saurabhd@chetu.com')
+				// ->setType('html')
+                // ->getTransport();
+            // $transport->sendMessage();								
+?>
+
+
+
+

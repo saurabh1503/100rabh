@@ -1,0 +1,6 @@
+.salesforce-connection-app {
+    padding-left: 90px;
+    background:url(images/salesforce-logo.svg) no-repeat 0 -30px;
+    line-height: 23px;
+    background-size: 80px 120px
+}

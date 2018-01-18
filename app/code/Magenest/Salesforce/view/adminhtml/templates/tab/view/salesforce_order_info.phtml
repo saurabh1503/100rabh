@@ -1,0 +1,66 @@
+<?php
+/**
+ * @var $block \Magenest\Salesforce\Block\Adminhtml\OrderEdit\Tab\View
+ */
+$syncHistory = $block->getSyncLog();
+?>
+
+<div class="fieldset-wrapper customer-information">
+    <div class="fieldset-wrapper-title">
+        <span class="title"><?php /* @escapeNotVerified */
+            echo __('Information') ?></span>
+    </div>
+    <table class="admin__table-secondary">
+        <tbody>
+        <?php echo $block->getChildHtml(); ?>
+        <tr>
+            <th><?php /* @escapeNotVerified */
+                echo __('Salesforce ID:') ?></th>
+            <td><a target="_blank" href="<?php echo $block->getSalesforceUrl() ?>"><?php /* @escapeNotVerified */
+                    echo $block->getSalesforceId() ?></a></td>
+        </tr>
+        <tr>
+            <th><?php /* @escapeNotVerified */
+                echo __('Last Updated At:') ?></th>
+            <td><?php /* @escapeNotVerified */
+                echo $block->getLastUpdatedAt() ?></td>
+        </tr>
+        <tr>
+            <th><?php /* @escapeNotVerified */
+                echo __('Created At:') ?></th>
+            <td><?php /* @escapeNotVerified */
+                echo $block->getCreatedAt() ?></td>
+        </tr>
+        <tr>
+            <td>
+                <button class="sync_item_button" onclick="location.href='<?php echo $block->getSyncButtonUrl() ?>'">Sync
+                    Now
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br/><br/><br/>
+<div class="fieldset-wrapper customer-information">
+    <div class="fieldset-wrapper-title">
+        <span class="title"><?php /* @escapeNotVerified */
+            echo __('Sync History') ?></span>
+    </div>
+    <table class="admin__table-secondary">
+        <tbody>
+        <?php echo $block->getChildHtml(); ?>
+        <?php if ($syncHistory): ?>
+            <?php $count = 1 ?>
+            <?php foreach ($syncHistory as $v): ?>
+                <tr>
+                    <th><? echo $count.'.' ?></th>
+                    <td><span style="font-size:12pt"><?php /* @escapeNotVerified */ echo $v->getData('datetime') ?></span></td>
+                    <td><?php if ($v->getData('status') == 1) echo __('Ok'); else echo __('Failed'); ?></td>
+                    <?php $count++ ?>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        </tbody>
+    </table>
+</div>

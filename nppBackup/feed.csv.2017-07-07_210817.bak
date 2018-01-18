@@ -1,0 +1,20 @@
+id,title,description,link,price,brand,mpn,condition,image_link,google_product_category,product_type,availability,shipping_weight,shipping
+69,mohawakee-sample,,http://localhost:8080/dump/catalog/product/view/id/69/s/mohawakee-sample/,0.9900,"Free shipping",,mohawakee-sample,http://localhost:8080/dump/pub/media/catalog/product/a/r/armqtrrnd_1_1.jpg,,,"In Stock",,4.0000
+68,mohawakee,,http://localhost:8080/dump/mohawakee.html,20.0000,delete,,mohawakee,http://localhost:8080/dump/pub/media/catalog/product/a/r/armqtrrnd_1.jpg,,,"In Stock",,
+67,arm-sample,,http://localhost:8080/dump/catalog/product/view/id/67/s/arm-sample/,0.9900,"Free shipping",,arm-sample,http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+66,arm,,http://localhost:8080/dump/arm.html,20.0000,trans,,arm,http://localhost:8080/dump/pub/media/catalog/product/a/r/armqtrrnd.jpg,,,"In Stock",,
+65,Armstrong-sample,,http://localhost:8080/dump/catalog/product/view/id/65/s/armstrong-sample/,0.9900,"Free shipping",,Armstrong-sample,http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+64,"Area rugs-sample",,http://localhost:8080/dump/catalog/product/view/id/64/s/area-rugs-sample/,0.9900,"Free shipping",,"Area rugs-sample",http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+63,"LW Mountain-sample",,http://localhost:8080/dump/catalog/product/view/id/63/s/lw-mountain-sample/,0.9900,"Free shipping",,"LW Mountain-sample",http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+62,custom-sample,,http://localhost:8080/dump/catalog/product/view/id/62/s/custom-sample/,0.9900,"Free shipping",,custom-sample,http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+61,custom,,http://localhost:8080/dump/custom.html,100.0000,one,,custom,http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,
+id,title,description,link,price,brand,mpn,condition,image_link,google_product_category,product_type,availability,shipping_weight,shipping
+sammohawakee,mohawakee-sample,,http://localhost:8080/dump/catalog/product/view/id/69/s/mohawakee-sample/,0.9900,"Free shipping",,mohawakee-sample,http://localhost:8080/dump/pub/media/catalog/product/a/r/armqtrrnd_1_1.jpg,,,"In Stock",,4.0000
+mohawakee,mohawakee,,http://localhost:8080/dump/mohawakee.html,20.0000,delete,,mohawakee,http://localhost:8080/dump/pub/media/catalog/product/a/r/armqtrrnd_1.jpg,,,"In Stock",,
+samarm,arm-sample,,http://localhost:8080/dump/catalog/product/view/id/67/s/arm-sample/,0.9900,"Free shipping",,arm-sample,http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+arm,arm,,http://localhost:8080/dump/arm.html,20.0000,trans,,arm,http://localhost:8080/dump/pub/media/catalog/product/a/r/armqtrrnd.jpg,,,"In Stock",,
+samArmstrong,Armstrong-sample,,http://localhost:8080/dump/catalog/product/view/id/65/s/armstrong-sample/,0.9900,"Free shipping",,Armstrong-sample,http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+sam34771,"Area rugs-sample",,http://localhost:8080/dump/catalog/product/view/id/64/s/area-rugs-sample/,0.9900,"Free shipping",,"Area rugs-sample",http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+sam67456,"LW Mountain-sample",,http://localhost:8080/dump/catalog/product/view/id/63/s/lw-mountain-sample/,0.9900,"Free shipping",,"LW Mountain-sample",http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+samcustom,custom-sample,,http://localhost:8080/dump/catalog/product/view/id/62/s/custom-sample/,0.9900,"Free shipping",,custom-sample,http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,4.0000
+custom,custom,,http://localhost:8080/dump/custom.html,100.0000,one,,custom,http://localhost:8080/dump/pub/media/catalog/product,,,"In Stock",,

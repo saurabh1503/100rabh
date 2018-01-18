@@ -1,0 +1,11 @@
+<?php 
+$section = file_get_contents('google-data-feed.csv');
+$File = "file.txt"; 
+$File = str_replace(',','#',$File); 
+ $Handle = fopen($File, 'w');
+ $Data = $section; 
+   fwrite($Handle, $Data);
+ print "Data Written"; 
+ fclose($Handle);  
+
+?>

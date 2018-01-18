@@ -1,0 +1,47 @@
+<?php
+
+
+namespace TNA\Profile\Model\Customer\Attribute\Source;
+
+class ProfessionalFocus extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
+{
+
+    protected $_optionsData;
+
+    /**
+     * Constructor
+     *
+     * @param array $options
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * getAllOptions
+     *
+     * @return array
+     */
+    public function getAllOptions()
+    {
+        if ($this->_options === null) {
+            $this->_options = [
+                ['value' => '0', 'label' => __('')],
+                ['value' => '1', 'label' => __('Claims')],
+                ['value' => '2', 'label' => __('Customer Service')],
+                ['value' => '3', 'label' => __('Finance Accounting')],
+                ['value' => '4', 'label' => __('Human Resources')],
+                ['value' => '5', 'label' => __('Legal')],
+                ['value' => '6', 'label' => __('Marketing')],
+                ['value' => '7', 'label' => __('Operations')],
+                ['value' => '8', 'label' => __('Other')],
+                ['value' => '9', 'label' => __('Risk Management')],
+                ['value' => '10', 'label' => __('Safety and Loss Control')],
+                ['value' => '11', 'label' => __('Sales')],
+                ['value' => '12', 'label' => __('Training and Education')],
+                ['value' => '13', 'label' => __('Underwriting')]
+            ];
+        }
+        return $this->_options;
+    }
+}

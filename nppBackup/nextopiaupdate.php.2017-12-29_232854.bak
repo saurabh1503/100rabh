@@ -1,0 +1,24 @@
+<?php 
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+$date = date('Y-m-d H:i:s');
+$fromDate = date('Y-m-d H:i:s', strtotime($date .' -100 day'));
+
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+$collection = 	$productCollection->addAttributeToSelect('*')
+								->addFieldToFilter('created_at', array('from'=>$fromDate, 'to'=>$date))
+								->addFieldToFilter('status', array('nin' => array('cancelled')))
+								->load();
+echo $collection->getSelect();die;
+foreach ($collection as $product){
+     echo 'Name  =  '.$product->getName().'<br>';
+}								
+								
+								
+?>

@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Salesforce extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ */
+?>
+<div class="actions actions-get-auth-token">
+    <div id="auth_token_result" class="message-validation hide" data-ui-id="request-salesforcecrm-result"></div>
+    <button  class="action-validate-get-auth-token" type="button" data-ui-id="button-send-request-to-salesforcecrm" id="<?php echo $block->getHtmlId() ?>">
+        <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+</div>
+<script>
+    require(['jquery'], function(jQuery){
+        jQuery('[data-ui-id="button-send-request-to-salesforcecrm"]').click(function(){
+            var username = jQuery('[data-ui-id="text-groups-config-fields-email-value"]').val();
+            var password = jQuery('[data-ui-id="system-config-form-field-password-0-password-groups-config-fields-passwd-value"]').val();
+            var client_id = jQuery('[data-ui-id="text-groups-config-fields-client-id-value"]').val();
+            var client_secret = jQuery('[data-ui-id="text-groups-config-fields-client-secret-value"]').val();
+            var security_token =  jQuery('[data-ui-id="text-groups-config-fields-security-token-value"]').val();
+            var data = {
+                username: username,
+                password : password,
+                client_id : client_id,
+                client_secret : client_secret,
+                security_token : security_token,
+                form_key: FORM_KEY
+            };
+            var url = '<?php echo $block->getUrl('salesforce/system_config_getauth/getAuth'); ?>';
+            jQuery.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                showLoader: true,
+                success: function(response){
+                    var result_token = jQuery('[data-ui-id="request-salesforcecrm-result"]');
+                    var responseObj = JSON.parse(response);
+                    console.log(responseObj);
+                    if(responseObj.error == 1){
+                        result_token.removeClass('hide').addClass('error');
+                        result_token.html(responseObj.description);
+                    }else{
+                        jQuery('[data-ui-id="system-config-form-field-disable-0-text-groups-config-fields-access-token-value"]').val(responseObj.access_token);
+                        jQuery('[data-ui-id="system-config-form-field-disable-0-text-groups-config-fields-instance-url-value"]').val(responseObj.instance_url);
+                        jQuery('[data-ui-id="button-send-request-to-salesforcecrm"]').attr('disabled', 'disabled');
+                        result_token.removeClass('hide').addClass('success');
+                        result_token.html('Get Access Token Success');
+                    }
+                    location.reload();
+                },
+                error: function () {
+                    var result_token = jQuery('[data-ui-id="request-salesforcecrm-result"]');
+                    result_token.removeClass('hide').addClass('error');
+                    result_token.html('Please check configuration again');
+                }
+            });
+        });
+    });
+</script>

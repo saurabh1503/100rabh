@@ -1,0 +1,45 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+	
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+$collection = $productCollection->create()
+            ->addAttributeToSelect('*')
+            ->load();
+
+        $filename = 'obj.txt';
+foreach ($collection as $product){
+        // create content
+        $content =
+        'id' ."\n". print_r($product->getId(), true)  ."\n". 
+        ' title' ."\n". print_r($product->getMetaTitle(), true) ."\n" . 
+        ' description'."\n" . print_r($product->getDescription(), true) ."\n" . 
+        ' link' ."\n". print_r($product->getProductUrl(), true)  ."\n". 
+        ' price' ."\n". print_r($product->getPrice(), true) ."\n". 
+        ' brand' ."\n". print_r($product->getName(), true)  ."\n". 
+        ' mpn' ."\n". print_r($product->getManufacturerSku(), true) ."\n" . 
+        ' condition'."\n" . print_r($product->getName(), true)  ."\n". 
+        ' product_type'."\n" . print_r($product->getTypeId(), true) ."\n" . 
+        ' image_link' ."\n". print_r($product->getImage(), true) ."\n" . 
+        ' google_product_category'."\n" . print_r($product->getCategoryId(), true) ."\n" . 
+        ' availability'."\n" . print_r($product->getAvailabilty(), true)  ."\n". 
+        ' shipping'."\n" . print_r($product->getShipping(), true) ."\n" . 
+        ' shipping_weight' ."\n". print_r($product->getWeight(), true);
+
+
+       
+        file_put_contents($filename, $content);
+
+}
+echo 'done';
+?>
+
+
+

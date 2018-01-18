@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+ @category    Mana
+ @package     Manadev_LayeredNavigation
+ @copyright   Copyright (c) http://www.manadev.com
+ @license     http://www.manadev.com/license  Proprietary License
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <manadev_features>
+            <Manadev_LayeredNavigation>
+                <version>17.03.2009</version>
+                <code>layered-navigation-filters-multiple-select-magento-2</code>
+                <title>Layered Navigation (Filters) with Multiple Select</title>
+                <sort_order>200</sort_order>
+            </Manadev_LayeredNavigation>
+        </manadev_features>
+        <mana_layered_navigation>
+            <default_templates>
+                <dropdown>text_multiple_select</dropdown>
+                <swatch>swatch_multiple_select</swatch>
+                <decimal>text_multiple_select</decimal>
+                <price>text_multiple_select</price>
+                <category>text_single_select</category>
+            </default_templates>
+            <default_positions>
+                <in_main_sidebar>1</in_main_sidebar>
+                <in_additional_sidebar>0</in_additional_sidebar>
+                <above_products>0</above_products>
+                <on_mobile>0</on_mobile>
+            </default_positions>
+            <show_applied_filter>
+                <show_in_main_sidebar>1</show_in_main_sidebar>
+                <show_in_additional_sidebar>1</show_in_additional_sidebar>
+            </show_applied_filter>
+            <slider>
+                <calculate_slider_min_max_based_on>page</calculate_slider_min_max_based_on>
+                <style/>
+                <style_mobile>same_as_desktop</style_mobile>
+            </slider>
+            <filter_positioning>
+                <is_slider_inline_in_dropdown_menu>0</is_slider_inline_in_dropdown_menu>
+            </filter_positioning>
+            <other>
+                <hide_filters_with_single_visible_item>0</hide_filters_with_single_visible_item>
+            </other>
+        </mana_layered_navigation>
+    </default>
+</config>

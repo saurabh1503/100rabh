@@ -1,0 +1,26 @@
+<?php
+    /**
+     * DocResearch Customer CustomPrice Observer
+     *
+     * @category    DocResearch
+     * @package     DocResearch_Customer
+     *
+     */
+    namespace Fcamodule\Addsample\Observer;
+ 
+    use Magento\Framework\Event\ObserverInterface;
+    use Magento\Framework\App\RequestInterface;
+	
+	
+    class Pindex implements ObserverInterface
+    {
+	
+	
+        public function execute(\Magento\Framework\Event\Observer $observer) {
+			
+			 $product_id = $observer->getProduct()->getId();
+			 echo $product_id; die;
+			 
+        }
+			
+    }

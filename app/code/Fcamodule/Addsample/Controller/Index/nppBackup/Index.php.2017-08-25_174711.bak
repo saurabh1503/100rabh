@@ -1,0 +1,186 @@
+<?php
+ 
+namespace Fcamodule\Addsample\Controller\Index;
+ 
+use Magento\Framework\App\Action\Context;
+ 
+class Index extends \Magento\Framework\App\Action\Action
+{
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
+     */
+    protected $resultPageFactory;
+    protected $productFactory;
+    protected $storeManager;
+	protected $objectmanager;
+	protected $_responseFactory;
+	protected $quote;
+    protected $_url;
+	protected $_rateResultFactory;
+    /**
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Magento\Framework\View\Result\PageFactory resultPageFactory
+     */
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+		\Magento\Catalog\Model\ProductFactory $productFactory,
+		\Magento\Store\Model\StoreManagerInterface $storeManager,
+		\Magento\Framework\ObjectManagerInterface $objectmanager,
+		\Magento\Framework\App\ResponseFactory $responseFactory,
+		\Magento\Quote\Model\QuoteFactory $quote,
+		\Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory,
+        \Magento\Framework\UrlInterface $url
+    )
+    {
+        parent::__construct($context);
+        $this->resultPageFactory = $resultPageFactory;
+		$this->productFactory = $productFactory;
+		$this->_storeManager = $storeManager;
+		$this->objectmanager = $objectmanager;
+		$this->quote = $quote;
+		$this->_responseFactory = $responseFactory;
+        $this->_url = $url;
+		$this->_rateResultFactory = $rateResultFactory;
+    }
+
+    public function execute()
+    {
+       $sku = $_GET['sku'];
+	   if(!$sku)
+	   {
+        header("Location: ".$store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB));
+        exit;
+	   }
+		$prod = $this->productFactory->create();
+		$p =    $prod->loadByAttribute('sku', $sku);
+		
+		if(!is_object($p) || strstr($sku, 'sam'))
+		{
+			header("Location: ".$store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB));
+			exit;
+		}
+		$name = $p->getName();
+		//for image
+	$store = $this->_storeManager->getStore();
+	$_mediapath = BP.'/pub/media/'. 'catalog/product' . $p->getImage();
+    $imageUrl  =  $store->getBaseDir(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'catalog/product' . $p->getImage();
+	//end image code
+	//check if you already have the Sample product, then don\'t create new..
+	$p = $prod->loadByAttribute('sku','sam'.$sku);
+
+	if(is_object($p))
+        $pId = $p->getId();
+	else
+        $pId = false;
+	
+	if(!$pId) {
+    $product = $this->objectmanager->create('Magento\Catalog\Model\Product');
+        try {
+            $product->setWebsiteIds(array(1)) //website ID the product is assigned to, as an array
+                    ->setAttributeSetId(4) //ID of a attribute set named 'default'
+                    ->setTypeId('simple') 
+                    ->setCreatedAt(strtotime('now')) 
+                    ->setSku('sam'.$sku) //SKU
+                    ->setName($name."-sample")
+                    ->setWeight(4.0000)
+					->setCategoryIds(7)
+                    ->setStatus(1) 
+                    ->setTaxClassId(4) //tax class (0 - none, 1 - default, 2 - taxable, 4 - shipping)
+                    ->setVisibility(1) 
+                    ->setPrice(0.99) 
+                    ->setMetaTitle($prod->getMetaTitle())
+                    ->setMetaKeyword($prod->getMetaKeyword())
+                    ->setMetaDescription($prod->getMetaDescription())
+                    ->setDescription($prod->getDescription())
+                    ->setShortDescription($prod->getShortDescription())
+					->setMediaGallery (array('images'=>array (), 'values'=>array ())) 
+					->addImageToMediaGallery($imageUrl, array('image','thumbnail','small_image'), false, false)
+                    ->setStockData(
+                        array(
+                           'use_config_manage_stock' => 0, //'Use config settings' checkbox
+                           'manage_stock'=>1, //manage stock
+                           'min_sale_qty'=>1, //Minimum Qty Allowed in Shopping Cart
+                           'max_sale_qty'=>2, //Maximum Qty Allowed in Shopping Cart
+                           'is_in_stock' => 1, //Stock Availability
+                           'qty' => 99999 //qty
+                        )
+                    );
+
+				//echo "BEFORE SAVING THE NEW PRODUCT";
+				$res = $product->save();
+				//echo "AFTER SAVING THE NEW PRODUCT";
+
+				//var_dump($res); 
+				$ids=$product->getEntityId();
+				// Save the new Sample Product ID to original product Attribute. 
+			} catch (Exception $e ) {
+				echo    $e->getMessage();
+			}
+		$cart = $this->objectmanager->get('Magento\Checkout\Model\Cart');
+		$productRepo = $this->objectmanager->get('Magento\Catalog\Model\ProductRepository');
+		$pId=$product->getId();
+		$productData = [];
+		$productData['qty'] = 1; 
+		$productData['product'] = $pId; 
+		 
+		$_addproduct = $productRepo->getById($pId);
+		if ($_addproduct) {
+			$cart->addProduct($_addproduct, $productData); // adds product in cart using cart model
+		}
+		$cart->save();
+		$cart->getQuote()->setTotalsCollectedFlag(false)->collectTotals();
+		$cart->getQuote()->save();
+						
+	}
+	else{
+	
+ 
+		$cart = $this->objectmanager->get('Magento\Checkout\Model\Cart');
+		$productRepo = $this->objectmanager->get('Magento\Catalog\Model\ProductRepository');
+		 
+		$productData = [];
+		$productData['qty'] = 1; 
+		$productData['product'] = $pId;
+		 
+		$_addproduct = $productRepo->getById($pId);
+		if ($_addproduct) {
+			$cart->addProduct($_addproduct, $productData); // adds product in cart using cart model
+		}
+		$cart->save();
+		$cart->getQuote()->setTotalsCollectedFlag(false)->collectTotals();
+		$cart->getQuote()->save();
+			
+	}
+			
+$products = $this->getRequest()->getParam('products_ids');
+$resultRedirect = $this->resultRedirectFactory->create();
+
+if($products)
+{
+    $products = explode(',', $products);
+
+    try {
+        $this->cart->addProductsByIds($products);
+        $this->cart->save();
+
+        $this->messageManager->addSuccess(__('Selected accessories has been added to your cart.'));
+    } catch (LocalizedException $e) {
+        $this->messageManager->addException(
+            $e,
+            __('%1', $e->getMessage())
+        );
+    } catch (\Exception $e) {
+        $this->messageManager->addException($e, __('There was an error while adding accessories to your cart.'));
+    }
+		$resultRedirect->setPath('checkout/cart/index');
+
+		return $resultRedirect;	
+		
+		// $redirectUrl= $this->_url->getUrl('checkout/cart/');
+		// $this->_responseFactory->create()->setRedirect($redirectUrl)->sendResponse();
+		//exit();
+    }
+	  
+}
+}

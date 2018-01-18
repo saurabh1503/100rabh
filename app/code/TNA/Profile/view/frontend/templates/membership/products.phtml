@@ -1,0 +1,81 @@
+<?php 
+const PARAM_NAME_BASE64_URL = 'r64';
+const PARAM_NAME_URL_ENCODED = 'uenc';
+use Magento\Framework\App\Action\Action; 
+$_productCollection = $block->getProductCollection();
+$count = count($_productCollection);
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+?>
+
+<div class="products wrapper">
+	<?php if($count > 0 ) { ?>
+    <ol class="products list items product-items">
+	 <?php  $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct'); ?>
+	 <?php foreach ($_productCollection as $_product): ?>
+	<?php $postParams = $block->getAddToCartPostParams($_product); //echo '<pre>';print_r($_product->getData());die;  ?>
+   
+     <div class="product-item-info" data-container="product-grid">
+                    
+
+                    <?php // Product Image ?>
+                       <!--<<a href="<?php /* @escapeNotVerified */  //echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                     <img src="<?php //echo $abstractProductBlock->getImage($_product, 'latest_collection_list')->getImageUrl(); ?>" alt="<?php //echo $_product->getName(); ?>" />
+                    
+					</a>-->
+                    <div class="product details product-item-details">
+                        
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link"
+                               href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                <?php /* @escapeNotVerified */ echo $_product->getName();?>
+                            </a>
+                        </strong>
+                    <?php $startDate =  $_product->getEventStartDate();?>
+                    <?php $endDate =   $_product->getEventStartDate(); ?>
+				   <div class="result-date"><?php $date = new DateTime($startDate); echo $date->format('F jS, Y'); ?><?php if ($startDate!=$endDate):?><?php $date = new DateTime($endDate); echo ' - ' . $date->format('F jS,'); ?> <?php endif;?></div>
+                    <div class="result-location"><?php if($_product->getLocationCity()){ echo $_product->getLocationCity();}  ?>
+					<?php $location_state = $_product->getLocationState(); ?>
+					<?php if($location_state) {echo ', ' . $location_state;}?>
+				   
+				   
+                    <?php echo $abstractProductBlock->getProductPrice($_product); ?>
+					<?php if ($_product->getShortDescription()):?>
+                                <div class="product description product-item-description">
+                                    <a href="<?php   echo $_product->getProductUrl() ?>" title="<?php  echo $_product->getName() ?>"
+                                       class="action more"><?php  echo __('Learn More') ?></a>
+                                </div>
+                     <?php endif;?>			
+					</div> 
+  
+                    <?php if ($_product->isSaleable()): ?>
+   
+					<form data-role="tocart-form" action="<?php /* @escapeNotVerified */ echo $postParams['action']; ?>" method="post">
+						<input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
+						<input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+						<?php echo $block->getBlockHtml('formkey')?>
+						<?php $storeManager = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Store\Model\StoreManagerInterface'); ?>
+							<button type="submit"
+									title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
+									class="action tocart primary">
+								<span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+							</button>
+					</form>
+					<?php else: ?>
+                        <?php if ($_product->getIsSalable()): ?>
+                          <div class="stock available"><span><?php echo __('In stock') ?></span></div>
+                        <?php else: ?>
+                          <div class="stock unavailable"><span><?php echo __('Out of stock') ?></span></div>
+                        <?php endif; ?>
+	              <?php endif;?>
+		</div> 
+   
+       <?php endforeach; ?>
+        </ol>
+<?php } else { ?>
+<p>No Dues / Memberships are available now. </p>
+<?php } ?>		
+</div>   
+   
+
+

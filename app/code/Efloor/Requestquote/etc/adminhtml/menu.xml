@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Efloor_Requestquote::requestquote_content" title="Request Quote Details" module="Efloor_Requestquote" sortOrder="60" parent="Magento_Backend::content" resource="Efloor_Requestquote::requestquote_content" />
+        <add id="Efloor_Requestquote" title="Request Quote" module="Efloor_Requestquote" sortOrder="0" parent="Efloor_Requestquote::requestquote_content" action="requestquote/grid" resource="Efloor_Requestquote::grid"/>
+    </menu>
+</config>

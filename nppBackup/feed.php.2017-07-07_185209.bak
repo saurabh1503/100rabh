@@ -1,0 +1,71 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+$categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+$stockItem = $objectManager->get('\Magento\CatalogInventory\Model\Stock\StockItemRepository');
+$collection = $productCollection->create()
+            ->addAttributeToSelect('*')
+			->addAttributeToSort('created_at', 'DESC')
+            ->setPageSize(10)
+            ->load();
+
+$filePath = 'feed.csv';
+if (file_exists($filePath)) {
+    $fh = fopen($filePath, 'a');     
+} else {
+    $fh = fopen($filePath, 'w');
+}  
+
+$header1 = array('id','title','description','link','price','brand','mpn','condition','image_link','google_product_category','product_type','availability','shipping_weight','shipping');
+ 
+fputcsv($fh, $header1); 
+
+foreach($collection as $product){
+	$ids= $product->getCategoryIds();
+	$categories = $categoryCollection->create()
+                                 ->addAttributeToSelect('*')
+                                 ->addAttributeToFilter('entity_id', $ids);
+	foreach($categories as $category){
+		$categoryName= $category->getName();
+
+	}
+$productStock = $stockItem->get($product->getId());
+ 
+$rowNew = array();
+
+$rowNew['id'] = $product->getId();
+$rowNew['title'] = $product->getMetaTitle();
+$rowNew['description'] = $product->getDescription();
+$rowNew['link'] = $product->getProductUrl();
+$rowNew['price'] = $product->getPrice();
+$rowNew['brand'] = $product->getAttributeSetId();
+$rowNew['mpn'] = $product->getManufacturerSku();
+$rowNew['condition'] = $product->getName();
+$rowNew['image_link'] = $product->getImage();
+$rowNew['google_product_category'] = $categoryName;
+$rowNew['product_type'] = $product->getTypeId();
+$rowNew['availability'] = $productStock->getIsInStock();
+$rowNew['shipping_weight'] = $product->getShipping();
+$rowNew['shipping'] = $product->getWeight();
+
+fputcsv($fh, $rowNew);
+
+
+ }
+
+fclose($fh);
+exit();
+
+
+?>
+
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_Salesforce::report.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\Salesforce\Block\Adminhtml\Request\TodayRequestForm" name="today-report-result" template="request/today_request_form.phtml"/>
+            <block class="Magenest\Salesforce\Block\Adminhtml\Request\RecordForm" name="record-report-result" template="request/record_form.phtml"/>
+            <block class="Magenest\Salesforce\Block\Adminhtml\Request\QueryForm" name="query-report" template="request/query_form.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

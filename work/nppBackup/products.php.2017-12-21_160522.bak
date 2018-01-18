@@ -1,0 +1,47 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+ini_set('max_execution_time', -1);
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+
+//$products = $objectManager->get('Magento\Catalog\Model\ProductFactory');
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+$productCollection->addAttributeToSelect('name')
+			->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
+			->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH)
+			//->addAttributeToFilter('entity_id', array('gt' => 120144))
+			->setPageSize(1)
+			->load();
+
+ 
+
+ 
+
+
+foreach($productCollection as $_product){
+	
+echo $_product->getID();	
+
+
+	
+// $specialPrice = $product->getSpecialPrice();
+// if($specialPrice){
+// $price = $specialPrice;
+// } 
+// else{
+	// $price = $product->getPrice();
+// }
+
+
+ }
+die;
+
+?>
+
+
+

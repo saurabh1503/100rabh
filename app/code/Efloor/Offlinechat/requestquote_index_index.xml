@@ -1,0 +1,14 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd" layout="1column">
+   <head>
+        <title>Request Quote</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Efloor\Requestquote\Block\Requestquote" name="requestquote" template="Efloor_Requestquote::requestquote.phtml" />
+        </referenceContainer>
+		<referenceContainer name="page.messages">
+        <block class="Magento\Framework\View\Element\Template" name="ajax.message.placeholder" template="Magento_Theme::html/messages.phtml"/>
+        <block class="Magento\Framework\View\Element\Messages" name="messages" as="messages" template="Magento_Theme::messages.phtml"/>
+		</referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,44 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('../app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+
+$productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
+ 
+
+$sku = '325104'; // YOUR PRODUCT SKU
+ 
+ 
+// get product by product sku
+$product = $productRepository->get($sku);
+
+//$cortonprice= $product->getCartonPrice();
+$SfPerQty=$product->getData('sold_by');
+	// $UnitPricingMeasure = ($SfPerQty == 0 ? "" : "1 sq ft");
+	// echo $UnitPricingMeasure;
+	
+	$UnitPricingBaseMeasure = $SfPerQty == 0 ? "" : format($SfPerQty);
+	echo $UnitPricingMeasure;
+	
+	
+function format($format) {
+	$args = func_get_args();
+	$format = array_shift($args);
+	
+	preg_match_all('/(?=\{)\{(\d+)\}(?!\})/', $format, $matches, PREG_OFFSET_CAPTURE);
+	$offset = 0;
+	foreach ($matches[1] as $data) {
+		$i = $data[0];
+		$format = substr_replace($format, @$args[$i], $offset + $data[1] - 1, 2 + strlen($i));
+		$offset += strlen(@$args[$i]) - 2 - strlen($i);
+	}
+	
+	return $format;
+}
+	
+?>

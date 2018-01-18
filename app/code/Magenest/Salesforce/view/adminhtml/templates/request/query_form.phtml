@@ -1,0 +1,45 @@
+<section class="admin__page-section order-view-account-information">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Request Report') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="select-date" data-role="show-report-date">
+            <div id="start-date" data-role="start-date" data-bind="scope: 'start-date'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <div id="end-date" data-role="end-date" data-bind="scope: 'end-date'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+            <div id="report-request" data-bind="scope:'report'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "start-date": {
+                    "label": "<?php echo __("Get Date From")?>",
+                    "component": "Magento_Ui/js/form/element/date",
+                    "template": "ui/form/field",
+                    "dataScope": "test_start"
+                },
+                "end-date": {
+                    "label": "<?php echo __("To")?>",
+                    "component": "Magento_Ui/js/form/element/date",
+                    "template": "ui/form/field",
+                    "dataScope": "test_end"
+                },
+                "report": {
+                    "component": "Magenest_Salesforce/js/view/report",
+                    "targetUrl": "<?php echo $block->getUrl('*/*/report');?>",
+                    "loaderFileUrl": "<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>"
+                }
+            }
+        }
+    }
+}
+</script>

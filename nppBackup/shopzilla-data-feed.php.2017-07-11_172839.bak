@@ -1,0 +1,75 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('../app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+$categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+$imgurl= $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product';
+$collection = $productCollection->create()
+            ->addAttributeToSelect('*')
+			// ->addAttributeToSort('created_at', 'ASC')
+            ->setPageSize(10)
+            ->load();
+
+$filePath = 'shopzilla-data-feed.csv';
+if (file_exists($filePath)) {
+    $fh = fopen($filePath, 'a');     
+} else {
+    $fh = fopen($filePath, 'w');
+}  
+
+$header1 = array('Unique ID','Category','Brand','Title','Description','Product URL','Image URL','Availability','Condition','Ship Weight','Ship Cost','Current Price');
+ 
+fputcsv($fh, $header1); 
+
+foreach($collection as $product){
+	$SfPerQty=$product->getData('psfperqty');
+	$UnitPricingMeasure = ($SfPerQty == 0 ? "" : "1 sq ft");
+	$ids= $product->getCategoryIds();
+	$categories = $categoryCollection->create()
+                                 ->addAttributeToSelect('*')
+                                 ->addAttributeToFilter('entity_id', $ids);
+	foreach($categories as $category){
+		$categoryName= $category->getName();
+
+	}
+$avail= $StockState->getStockQty($product->getId(), $product->getStore()->getWebsiteId());
+if($avail>=1){	
+	$stock="In Stock";
+}
+else{
+	$stock="Out of Stock";
+
+}
+$rowNew = array();
+$rowNew['Unique ID'] = $product->getSku();
+$rowNew['Category'] = "";
+$rowNew['Brand'] = $categoryName;
+$rowNew['Title'] = $product->getName();
+$rowNew['Description'] = $product->getDescription();
+$rowNew['Product URL'] = $product->getProductUrl();
+$rowNew['Image URL'] = $imgurl.$product->getImage();
+$rowNew['Availability'] = $stock;
+$rowNew['condition'] = "New";
+$rowNew['Ship Weight'] = "";
+$rowNew['Current Price'] = $product->getPrice();
+
+fputcsv($fh, $rowNew);
+
+ }
+
+fclose($fh);
+exit();
+
+	
+?>
+
+
+

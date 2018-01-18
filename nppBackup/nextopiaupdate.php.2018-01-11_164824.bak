@@ -1,0 +1,28 @@
+<?php 
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+$date = date('Y-m-d H:i:s');
+$fromDate = date('Y-m-d H:i:s', strtotime($date .' -1 day'));
+
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+$collection = 	$productCollection->addAttributeToSelect('sku')
+								->addFieldToFilter('created_at', array('from'=>$fromDate, 'to'=>$date))
+								->load();
+// echo $collection->getSelect().'-----'.$date.'---'.$fromDate;
+
+// die;
+foreach ($collection as $product){
+     echo 'sku  =  '.$product->getSku().'<br>';
+}								
+
+//echo "Update done successfully.";
+
+?>							
+
+

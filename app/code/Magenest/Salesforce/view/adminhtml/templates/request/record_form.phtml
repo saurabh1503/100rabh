@@ -1,0 +1,49 @@
+<?php
+/** @var Magenest\Salesforce\Block\Adminhtml\Request\RecordForm $block */
+$highestDay = $block->getHighestRequestDay();
+$lowestDay = $block->getLowestRequestDay();
+$highestRestRequest = $block->getHighestRestRequest();
+$lowestRestRequest = $block->getLowestRestRequest();
+$highestBulkRequest = $block->getHighestBulkRequest();
+$lowestBulkRequest = $block->getLowestBulkRequest();
+$noRequestMessage = 'No request has been made';
+?>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */
+            echo __('Request Records') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-information">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('Detail') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary">
+                    <thead>
+                    <th></th>
+                    <th>Date</th>
+                    <th>REST API Requests</th>
+                    <th>BULK API Requests</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Highest Request:') ?></td>
+                        <td><?php echo $highestDay ? $highestDay : $noRequestMessage ?></td>
+                        <td><?php echo $highestRestRequest ? $highestRestRequest : $noRequestMessage?></td>
+                        <td><?php echo $highestBulkRequest ? $highestBulkRequest : $noRequestMessage?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Lowest Request:') ?></td>
+                        <td><?php echo $lowestDay ? $lowestDay : $noRequestMessage ?></td>
+                        <td><?php echo $lowestRestRequest ? $lowestRestRequest : $noRequestMessage?></td>
+                        <td><?php echo $lowestBulkRequest ? $lowestBulkRequest : $noRequestMessage?></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

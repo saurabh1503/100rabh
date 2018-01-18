@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product_form">
+            <block name="salesforce_product" class="Magenest\Salesforce\Block\Adminhtml\ProductEdit\Tab\View" template="tab/productview.phtml">
+                <arguments>
+                    <argument name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Salesforce Integration</item>
+                        <item name="collapsible" xsi:type="boolean">true</item>
+                        <item name="opened" xsi:type="boolean">false</item>
+                        <item name="sortOrder" xsi:type="string">500</item>
+                        <item name="canShow" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">fieldset</item>
+                    </argument>
+                </arguments>
+                <block class="Magenest\Salesforce\Block\Adminhtml\ProductEdit\Tab\View\SalesforceProductInfo" name="salesforce_product_info"
+                           template="tab/view/salesforce_product_info.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

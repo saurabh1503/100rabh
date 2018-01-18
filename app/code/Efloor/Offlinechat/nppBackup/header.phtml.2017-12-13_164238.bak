@@ -1,0 +1,43 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$welcomeMessage = $block->getWelcome();
+?>
+
+<!--<a class="greet welcome submit-chat" onclick="liveagent.startChat('573j0000000Gn8Z')">
+    <span style="cursor:pointer">Live Chat </span>
+</a>-->
+<span class="live-chat greet welcome submit-chat" style="cursor:pointer; color:#fff;">Live Chat</span>
+<?php switch ($block->getShowPart()):
+    case 'welcome':
+        ?>
+        <div class="greet welcome" data-bind="scope: 'customer'">
+            <span data-bind="text: customer().fullname ? $t('Welcome, %1!').replace('%1', customer().fullname) : '<?= $block->escapeHtml($welcomeMessage) ?>'"></span>
+        </div>
+        <script type="text/x-magento-init">
+            {
+            "*": {
+            "Magento_Ui/js/core/app": {
+            "components": {
+            "customer": {
+            "component": "Magento_Customer/js/view/customer"
+            }
+            }
+            }
+            }
+            }
+        </script>
+        <?php break; ?>
+
+    <?php case 'other': ?>
+        <?php echo $block->getChildHtml(); ?>
+        <?php break; ?>
+
+<?php endswitch; ?>

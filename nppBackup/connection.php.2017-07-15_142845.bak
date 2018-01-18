@@ -1,0 +1,17 @@
+<?php
+
+// Replace the value's of these variables with your own data:
+    $dsn = "MSSQLServer"; // Data Source Name (DSN) from the file /usr/local/zend/etc/odbc.ini
+    $user = "DBuser"; // MSSQL database user
+    $password = "DBpass"; // MSSQL user password
+
+$connect = odbc_connect($dsn, $user, $password);
+
+//Verify connection
+if ($connect) {
+    echo "Connection established.";
+    odbc_close($connect);
+} else {
+    die("Connection could not be established.");
+}
+?>

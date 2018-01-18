@@ -1,0 +1,37 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+$date = date('Y-m-d H:i:s');
+$fromDate = date('Y-m-d H:i:s', strtotime($date .' -1 day'));
+
+
+$ordercollection = $objectManager->get('\Magento\Sales\Model\ResourceModel\Order\CollectionFactory')->create();
+$collection = 	$ordercollection->addAttributeToSelect('grand_total','total_qty_ordered')
+								->addFieldToFilter('created_at', array('from'=>'2017-09-05 19:27:52', 'to'=>'2017-11-17 16:04:27'))
+								->addFieldToFilter('status', array('nin' => array('cancelled')));
+								
+		//echo "<pre>"; print_r($collection->getData());die;
+								
+
+$total = 0;
+$sample =0;								
+ foreach($collection as $value){
+	 $grandtotal = $value->getTotalQtyOrdered();
+echo $grandtotal;
+	 //$total += $grandtotal;
+ }
+
+echo $total;
+						
+								
+?>
+
+
+
+

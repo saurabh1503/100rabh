@@ -1,0 +1,78 @@
+<?php
+/** @var Magenest\Salesforce\Block\Adminhtml\Request\TodayRequestForm $block */
+$restRequest = $block->getTodayRestRequest();
+$bulkRequest = $block->getTodayBulkRequest();
+$contactRequest = $block->getTodayContactRequest();
+$leadRequest = $block->getTodayLeadRequest();
+$accountRequest = $block->getTodayAccountRequest();
+$orderRequest = $block->getTodayOrderRequest();
+$campaignRequest = $block->getTodayCampaignRequest();
+$productRequest = $block->getTodayProductRequest();
+$noRequestMessage = 'No request has been made today';
+?>
+<section class="admin__page-section order-view-billing-shipping">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */
+            echo __('Requests Made Today') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-payment-method admin__fieldset-wrapper">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */
+                    echo __('Total API Request Today') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <p style="font-size: 13pt;"><?php /* @escapeNotVerified */
+                    echo __('REST API Request:') ?>
+                <?php /* @escapeNotVerified */
+                    echo $restRequest ? $restRequest : $noRequestMessage ?></p>
+                <p style="font-size: 13pt;"><?php /* @escapeNotVerified */
+                    echo __('BULK API Request:') ?>
+                <?php /* @escapeNotVerified */
+                    echo $bulkRequest ? $bulkRequest : $noRequestMessage ?></p>
+                </table>
+            </div>
+        </div>
+
+        <div class="admin__page-section-item order-information">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php echo __('Detail') ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <table class="admin__table-secondary">
+                    <tbody>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Accounts:') ?></td>
+                        <td><?php echo $accountRequest ? $accountRequest : $noRequestMessage ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Contacts:') ?></td>
+                        <td><?php echo $contactRequest ? $contactRequest : $noRequestMessage ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Campaigns:') ?></td>
+                        <td><?php echo $campaignRequest ? $campaignRequest : $noRequestMessage ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Leads:') ?></td>
+                        <td><?php echo $leadRequest ? $leadRequest : $noRequestMessage ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Orders:') ?></td>
+                        <td><?php echo $orderRequest ? $orderRequest : $noRequestMessage ?></td>
+                    </tr>
+                    <tr>
+                        <td><?php /* @escapeNotVerified */
+                            echo __('Products:') ?></td>
+                        <td><?php echo $productRequest ? $productRequest : $noRequestMessage ?></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</section>

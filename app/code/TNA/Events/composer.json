@@ -1,0 +1,27 @@
+{
+    "name": "tna/module-events",
+    "description": "The National Alliance event sync module includes the oracle to Magento event and order sync, event attribute configuration, and course schedule logic.",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "cstephens@scic.com",
+            "name": "Charles Stephens"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+      "php": "~5.5.0|~5.6.0|~7.0.0",
+      "magento/module-store": "100.0.*",
+      "magento/module-checkout": "100.0.*"
+    },
+    "type": "magento2-module",
+    "version": "0.0.1-alpha1",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "TNA\\Events\\": ""
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="tna_events">
+    <job instance="TNA\Events\Cron\EventSync" method="execute" name="tna_events_eventsync">
+      <schedule>0 * * * *</schedule>
+    </job>
+    <job instance="TNA\Events\Cron\CeSync" method="execute" name="tna_events_cesync">
+      <schedule>0 */2 * * *</schedule>
+    </job>
+	</group>
+</config>

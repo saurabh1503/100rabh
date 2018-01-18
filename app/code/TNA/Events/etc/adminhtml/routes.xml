@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+	<router id="admin">
+		<route frontName="tna_events" id="tna_events">
+			<module before="Magento_Backend" name="TNA_Events"/>
+		</route>
+	</router>
+</config>

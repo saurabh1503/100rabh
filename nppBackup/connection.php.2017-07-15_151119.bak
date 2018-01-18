@@ -1,0 +1,18 @@
+<?php
+$pdoParams = array(
+    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true
+);
+
+$params = array(
+    'host'           => 'CHETUIWK1437\SQL2012',
+    'username'       => 'sa',
+    'password'       => 'Chetu@123',
+    'dbname'         => 'efloors',
+    'driver_options' => $pdoParams
+);
+
+$db = Zend_Db::factory('Pdo_Mysql', $params);
+
+echo $db->getConnection()->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY);
+
+?>

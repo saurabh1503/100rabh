@@ -1,0 +1,42 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+	
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+$collection = $productCollection->create()
+            ->addAttributeToSelect('*')
+            ->load();
+
+foreach ($collection as $product){
+	$categories = $product->getCategoryIds();
+	$cat = $objectManager->create('Magento\Catalog\Model\Category')->load($categories);
+    echo 'id  =  '.$product->getId().'<br>';
+    echo 'title  =  '.$product->getMetaTitle().'<br>';
+    echo 'description  =  '.$product->getDescription().'<br>';
+    echo 'link  =  '.$product->getProductUrl().'<br>';
+    echo 'price  =  '.$product->getPrice().'<br>';
+    echo 'brand  =  '.$product->getName().'<br>';
+    echo 'mpn  =  '.$product->getManufacturerSku ().'<br>';
+    //echo 'condition  =  '.$product->getName().'<br>';
+    echo 'image_link  =  '.$store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $product->getImage();.'<br>';
+    echo 'google_product_category  =  '.$cat->getName().'<br>';
+    echo 'product_type  =  '.$product->getTypeId().'<br>';
+    echo 'availability  =  '.$product->getAvailability().'<br>';
+    echo 'shipping_weight  =  '.$product->getWeight().'<br>';
+    echo 'shipping  =  '.$product->getShipping().'<br>';
+}
+	
+
+
+
+?>
+
+
+

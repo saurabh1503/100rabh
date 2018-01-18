@@ -1,0 +1,5 @@
+<?xml version="1.0"?>    
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<preference for="Magento\OfflineShipping\Model\Carrier\Freeshipping" type="Fcamodule\Addsample\Model\Carrier\Freeshipping" />
+<preference for="Magento\Catalog\Model\Layer\Filter" type="Fcamodule\Addsample\Model\Carrier\Filter\Item" />
+</config>

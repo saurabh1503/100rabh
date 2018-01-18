@@ -1,0 +1,36 @@
+<?php 
+$i = 0;
+$newdata = [];
+$handle = fopen("NewFile.csv", "r");
+
+// READ CSV
+while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {      
+
+    // UPDATE 100TH ROW DATA (TO EXCLUDE, KEEP ONLY $i++ AND continue)
+    if ($i == 99) {
+        $newdata[$i][] = somenewvalue;          
+        $newdata[$i][] = somenewvalue;   
+        $newdata[$i][] = somenewvalue;  
+        $newdata[$i][] = somenewvalue;
+        $newdata[$i][] = somenewvalue;
+        $newdata[$i][] = somenewvalue;
+        $i++;
+        continue;
+    }  
+    $newdata[$i][] = $data[0];          
+    $newdata[$i][] = $data[1];    
+    $newdata[$i][] = $data[2];      
+    $newdata[$i][] = $data[3];    
+    $newdata[$i][] = $data[4];    
+    $newdata[$i][] = $data[5];
+    $i++;    
+}
+
+// EXPORT CSV
+$fp = fopen('NewFile.csv', 'w');    
+foreach ($newdata as $rows) {
+    fputcsv($fp, $rows);
+}    
+fclose($fp);
+
+?>

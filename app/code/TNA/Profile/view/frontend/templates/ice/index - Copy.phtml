@@ -1,0 +1,60 @@
+<style type="text/css">
+input[type="radio"]:checked {
+    background: #000;
+}
+input[type="radio"] {
+    margin: 4px 0 0;
+    margin-top: 1px\9;
+    line-height: normal;
+    display: inline-block;
+    width: 16px;
+    border: 3px solid #0fa0c8;
+    border-radius: 50%;
+    background: #fff;
+    height: 16px;
+}
+</style>
+<?php
+$iceForm = $block->geticeFormData();
+?>
+
+
+<div id="ice">
+  
+      <h6>* Required fields</h6>
+      <form action ="<?php echo $this->getUrl('customer/ice/save');?>" method="post">
+	   <table>
+	   <tr><td>Name</td><td><input type="text" name="name"  value="" /></td></tr>
+	   <tr><td>Attending</td><td><input type="text" name="attending"  value="" /></td></tr>
+	   <tr><td>Address during program *</td><td>
+	    <input type="radio" name="address_program" value="1" > Conference Hotel
+        <input type="radio" name="address_program" value="2" > Other Hotel or Residence
+        </td></tr>
+	   <tr><td>Address where you will be staying*</td><td><input type="text" name = "address" value="" /></td></tr>
+	   <tr><td>Phone number where you will be staying*</td><td><input type="text" name="phone" class="phone" value="" /></td></tr>
+	   <tr><td span="2"><b>PRIMARY EMERGENCY CONTACT</b></td><tr>
+	  
+	   <tr><td>Name *</td><td><input type="text" value="" name= "name_primary" required /></td></tr>
+	   <tr><td>Relationship to you *</td><td><input type="text" value="" name="relationship" required /></td></tr>
+	   <tr><td>Address *</td><td><input type="text" value="" name="address_pr" required/></td></tr>
+	   <tr><td>Phone *</td><td><input type="text" value="" name="phone_pr" class="phone" required/></td></tr>
+	   <tr><td>Are you allergic to any medications? *</td><td><input type="text" name="medication" value="" required/></td></tr>
+	   <tr><td></td><td><button type="submit" value="Submit" class="main-button blue-button" >Submit</button></td></tr>
+	   </table>
+	 </form>
+<div>
+<script type="text/javascript">
+    require([ 'jquery'],  function( $ ) {
+	$('.phone').on('input', function() {
+    var number = $(this).val().replace(/[^\d]/g, '')
+    if (number.length == 7) {
+      number = number.replace(/(\d{3})(\d{4})/, "$1-$2");
+    } else if (number.length == 10) {
+      number = number.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+    }
+    $(this).val(number)
+	});
+	
+	});
+</script>
+

@@ -1,0 +1,18 @@
+@salesforce-icons-admin__font-name-path: 'Magenest_Salesforce::fonts/icomoon';
+@salesforce-icons-admin__font-name : 'Salesforce';
+
+.lib-font-face(
+  @family-name: @salesforce-icons-admin__font-name,
+  @font-path: @salesforce-icons-admin__font-name-path,
+  @font-weight: normal,
+  @font-style: normal
+);
+
+.admin__menu .item-salesforce.parent.level-0 > a:before,
+.admin__menu .item-salesforce.level-0 > a:before {
+  font-family: @salesforce-icons-admin__font-name;
+  font-size: 5.2rem;
+  line-height: 2px;
+  content: "\e969";
+  padding-top: 5px;
+}

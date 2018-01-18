@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Salesforce extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="salesforce_register" instance="Magenest\Salesforce\Observer\Customer\Register"/>
+    </event>
+    <event name="customer_delete_commit_after">
+        <observer name="salesforce_deleteCustomer" instance="Magenest\Salesforce\Observer\Customer\Delete"/>
+    </event>
+    <event name="customer_address_save_after">
+        <observer name="salesforce_updateCustomer" instance="Magenest\Salesforce\Observer\Customer\Update"/>
+    </event>
+    <event name="sales_order_save_commit_after">
+        <observer name="salesforce_syncOrder" instance="Magenest\Salesforce\Observer\Order\Create"/>
+    </event>
+    <event name="controller_action_predispatch_newsletter">
+        <observer name="salesforce_syncOrder" instance="Magenest\Salesforce\Observer\Customer\Subscriber"/>
+    </event>
+</config>

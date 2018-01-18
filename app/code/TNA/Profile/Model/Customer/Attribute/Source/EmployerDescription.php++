@@ -1,0 +1,44 @@
+<?php
+
+
+namespace TNA\Profile\Model\Customer\Attribute\Source;
+
+class EmployerDescription extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
+{
+
+    protected $_optionsData;
+
+    /**
+     * Constructor
+     *
+     * @param array $options
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * getAllOptions
+     *
+     * @return array
+     */
+    public function getAllOptions()
+    {
+        if ($this->_options === null) {
+            $this->_options = [
+                ['value' => '0', 'label' => __('')],
+                ['value' => '1', 'label' => __('School or School District')],
+                ['value' => '2', 'label' => __('Association')],
+                ['value' => '3', 'label' => __('Financial Institution')],
+                ['value' => '4', 'label' => __('Government Agency')],
+                ['value' => '5', 'label' => __('Insurance Agent')],
+                ['value' => '6', 'label' => __('Insurance Carrier')],
+                ['value' => '7', 'label' => __('Non-Insurance Organization')],
+                ['value' => '8', 'label' => __('Presently Unemployed')],
+                ['value' => '9', 'label' => __('University or College')],
+                ['value' => '10', 'label' => __('Other')]
+            ];
+        }
+        return $this->_options;
+    }
+}

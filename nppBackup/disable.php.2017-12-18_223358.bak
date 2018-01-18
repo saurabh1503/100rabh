@@ -1,0 +1,28 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+$fromDate = date('Y-m-d H:i:s', strtotime($fromDate));
+$toDate = date('Y-m-d H:i:s', strtotime($toDate));
+
+
+echo $fromDate.'-------------'.$toDate;
+
+
+//$ordercollection = $objectManager->get('\Magento\Sales\Model\ResourceModel\Order\CollectionFactory')->create();
+//$collection = 	$ordercollection->addAttributeToSelect('*')
+								//->addAttributeToFilter('created_at', array('from'=>$fromDate, 'to'=>$toDate));
+								
+ 
+								
+								
+?>
+
+
+
+

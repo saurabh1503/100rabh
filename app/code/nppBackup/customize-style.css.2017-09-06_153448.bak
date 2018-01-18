@@ -1,0 +1,11 @@
+.product-info-details-block{display:block !important}
+.modals-wrapper{display:none !important}
+.catalog-product-view .product.info .data.item.content ul{margin-left:20px;list-style-type:disc}
+.catalog-product-view .product.info .data.item.content div strong{color:#000}
+.sales-order-view .page-title-wrapper {margin-bottom: 30px;}
+.sizes-shapes-table tr td{
+	vertical-align: middle;
+}
+@media screen and (max-width:768px){
+.block.items-in-cart .product-item .product-image-container{max-width: 100%;}
+}

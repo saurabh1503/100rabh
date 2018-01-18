@@ -1,0 +1,30 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('../app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+// $collection_name ="New Wave";
+// $productcollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection')
+               // ->addAttributeToSelect(['entity_id','price','width','length','arearugs_shape'])
+				// ->addAttributeToFilter('collection_name', array('eq' => $collection_name))
+                // ->setPageSize(2);
+
+
+$productcollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection')
+            ->addAttributeToSelect(['entity_id','price','width','length','arearugs_shape'])
+			->addAttributeToFilter('attribute_set_id','28')
+            ->addAttributeToFilter('laminate_manufacturer',['eq'=>'Tarkett'])
+            ->addAttributeToFilter('style_name',['eq'=>'Heritage'])
+			->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
+			->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH)
+			->addAttributeToFilter('psell',['eq'=>'1'])
+			->setPageSize(2);
+
+echo $productcollection->getSelect();
+die;
+ 
+?>

@@ -1,0 +1,13 @@
+<?php
+$hostname="CHETUIWK1437\SQL2012";
+$username="sa";
+$password="Chetu@123";
+$dbname="efloors";
+
+$connection = mysql_connect($hostname, $username, $password);
+mysql_select_db($dbname, $connection);
+
+
+?>
+
+?>

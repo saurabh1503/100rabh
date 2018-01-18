@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Salesforce extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="200">
+            <label>Magenest</label>
+        </tab>
+        <section id="salesforcecrm" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>SalesforceCRM Config</label>
+            <tab>magenest</tab>
+            <resource>Magenest_Salesforce::config_salesforce</resource>
+            <include path="Magenest_Salesforce::salesforce/application.xml"/>
+            <include path="Magenest_Salesforce::salesforce/synchronization_setting.xml"/>
+            <include path="Magenest_Salesforce::salesforce/synchronize.xml"/>
+        </section>
+    </system>
+</config>

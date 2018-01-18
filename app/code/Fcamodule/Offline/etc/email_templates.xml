@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Email/etc/email_templates.xsd">
+<template id="send_offline_email_template" label="Email Form" file="offline_form.html" type="html" module="Fcamodule_Offline" area="frontend"/>
+</config>

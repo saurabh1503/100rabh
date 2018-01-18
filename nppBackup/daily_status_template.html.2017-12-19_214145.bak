@@ -1,0 +1,16 @@
+<!--@subject Efloors.com Automated Email System@-->
+<!--@vars {
+"var data.day_total_material_sales_qty":"day_total_material_sales_qty",
+"var data.day_total_material_sales":"day_total_material_sales",
+"var data.day_total_material_sales_sample_qty":"day_total_material_sales_sample_qty",
+"var data.day_total_material_sales_sample_sale":"day_total_material_sales_sample_sale",
+"var data.day_total_sale_qty":"day_total_sale_qty",
+"var data.day_total_sale":"day_total_sale",
+"var data.month_date":"month_date",
+"var data.month_total_material_sales_qty":"month_total_material_sales_qty",
+"var data.month_total_material_sales":"month_total_material_sales",
+"var data.month_total_material_sales_sample_qty":"month_total_material_sales_sample_qty",
+"var data.month_total_material_sales_sample_sale":"month_total_material_sales_sample_sale",
+"var data.month_total_sale_qty":"month_total_sale_qty",
+"var data.month_total_sale":"month_total_sale"
+} @-->

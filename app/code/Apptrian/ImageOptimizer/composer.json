@@ -1,0 +1,19 @@
+{
+  "name": "apptrian/image-optimizer",
+  "description": "Optimize your images, reduce their file size without losing image quality and speed up your site.",
+  "type": "magento2-module",
+  "version": "2.2.0",
+  "license": [
+    "OSL-3.0"
+  ],
+  "require": {
+    "php": "~5.5|~7.0",
+    "magento/framework": "*"
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Apptrian\\ImageOptimizer\\": ""
+    }
+  }
+}

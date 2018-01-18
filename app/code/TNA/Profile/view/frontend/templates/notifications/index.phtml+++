@@ -1,0 +1,195 @@
+<div class="container">
+	<div class="row">
+
+		<div class="col-xs-12 col-sm-12">
+			<legend class="legend"><span>Notifications</span></legend>
+			<ul class="tabs">
+				<li class="tab-link current" role="tab"  data-tab="tab-1">Free Webinars</li>
+				<li class="tab-link" role="tab"  data-tab="tab-2">Dues Renewal</li>
+				<li class="tab-link" role="tab" data-tab="tab-3">Annual Update</li>
+				<li class="tab-link" role="tab" data-tab="tab-4">New Courses</li>
+			</ul>
+			<div id="tab-1" class="tab-content current" role="tabpanel">
+				<p>Nam rutrum vitae nisl sed fringilla. Nulla fringilla non dolor eu maximus. Fusce sed nisi pulvinar purus sodales condimentum nec sit amet ante. Nullam ac mauris turpis. Donec vel condimentum neque. Nunc diam quam, rutrum nec aliquet id, congue non arcu.</p>			
+				<div id="collapseOne" class="panel-collapse in panel-body">	 
+					<div>
+						<div class="section-border">
+							<div class="row">
+								<div class="col-md-6 col-sm-12 col-xs-12">
+									<div class="title-text">
+										<label>Spring Webinar</label>
+										<h4>Innovations in Long-Term Care Funding with Life Insurance</h4>
+										<p>presented by <strong>Jerry E. Rhinehart, CIC, CLU, ChFC, RHU </strong></p>
+									</div>
+									<hr>
+									<p>When: Apr 13, 2017 10:30AM – 12:30PM Central Time</p>
+									<a href="https://attendee.gotowebinar.com/recording/1747808254747985409" class="action btn-primary btn">View Webinar Recording</a>
+								</div>
+								<div class="col-md-6 col-sm-12 col-xs-12">
+									<div class="title-text">
+										<label>Summer Webinar</label>
+										<h4>Uncertainty: Underwriting Unmanned Aerial Vehicles</h4>
+										<p>presented by <strong>Richard S. Pitts, J.D. </strong></p>
+									</div>
+									<hr>
+									<p>When: Jun 08, 2017 10:30AM – 12:30PM Central Time</p>
+									<a href="https://attendee.gotowebinar.com/recording/5882920854956644616" class="action btn-primary btn">View Webinar Recording</a>
+								</div>
+							</div><!-- /.row -->
+						</div><!-- .section-border -->
+						<div class="section-border">					
+							<div class="row">
+								<div class="col-md-6 col-sm-12 col-xs-12">
+									<div class="title-text">
+										<label>Fall Webinar</label>
+										<h4>The Internet of Things</h4>
+										<p>presented by <strong>Paul W. Burkett, J.D., CIC, CRM, CPCU, ARM, ALCM </strong></p>
+									</div>
+									<hr>
+									<p>When: Sep 05, 2017 10:30AM – 12:30PM Central Time</p>
+									<form action="/Home/RegisterForWebinar" method="post" id="fm8817494297357772290">
+										<input type="hidden" id="wkey8817494297357772290" name="WebinarKey" value="8817494297357772290">
+										<input type="hidden" id="em8817494297357772290" name="emailpref" value="0">
+										<input type="button" data="8817494297357772290" value="Register" class="action btn-primary btn webinar">
+									</form>
+								</div>
+								<div class="col-md-6 col-sm-12 col-xs-12">
+									<div class="title-text">
+										<label>Winter Webinar</label>
+										<h4>Cyber Liability – What Every Agent Should Know</h4>
+										<p>presented by <strong>John C. Immordino, CIC, CRM, RPLU </strong></p>
+									</div>
+									<hr>
+									<p>When: Dec 06, 2017 10:30AM – 12:30PM Central Time</p>
+									<form action="/Home/RegisterForWebinar" method="post" id="fm1493492313602371586">
+										<input type="hidden" id="wkey1493492313602371586" name="WebinarKey" value="1493492313602371586">
+										<input type="hidden" id="em1493492313602371586" name="emailpref" value="0">
+										<input type="button" data="1493492313602371586" value="Register" class="action btn-primary btn webinar">
+									</form>
+								</div>
+								<div class="col-md-12 margin-top text-right">
+									<form action="/Home/RegisterForWebinar" method="post" id="fm0">
+										<input type="hidden" id="wkey" name="WebinarKey" value="0">
+											<input type="hidden" id="em0" name="emailpref" value="0">
+										<input type="button" data="0" value="Register for All Webinars" class="btn btn-primary action webinar">
+									</form>
+								</div>
+							</div><!-- /.row -->
+						</div><!-- .section-border -->
+					</div>
+					<div class="center-this-container">
+						<a href="#divForm" id="btnForm"class="main-button blue-button">Notify Me of Upcoming Free Webinars</a>
+					     <div id ="divForm" style="display:none;">
+					 
+							<div id="dialogContent">
+								 <form action = "" method ="post" class="padding15">
+								 
+								  <div class="field form-group row">
+									  <label class="label col-md-3">When</label>
+									  <div class="control col-md-9">
+										 <select class="">
+											<option value="30">30 Days</option>
+											<option value="60">60 Days</option>
+											<option value="90">90 Days</option>
+										  </select>
+									</div>
+								  </div>
+								<div class="field form-group row">
+									 <label class="label col-md-3">How</label>
+									  <div class="control col-md-9">
+										  <input type="radio" name="when_notity" value="text" checked> Text
+										  <input type="radio" name="when_notity" value="email"> Email
+									</div>
+								  </div>
+								<div class="buttons">
+									 <input type="submit" value="submit" class ="notification btn primary action capitalize">
+								</div>
+								 </form> 
+							</div>
+
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div id="tab-2" class="tab-content" role="tabpanel" >
+				 <p>Your CIC dues will be up for renewal on January 30, 2017.</p>
+				 <div class="pulled-text">
+					<p>This text is in a separate div that will be pulled from elsewhere</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et diam congue urna euismod mattis. Vestibulum pulvinar risus viverra augue tristique lobortis. Aliquam quis rhoncus libero. Nam aliquet dictum lorem ac faucibus. Proin scelerisque condimentum neque, non egestas sem scelerisque at. Nam volutpat dolor eget felis sagittis tempus. Nunc quis purus scelerisque, ultricies metus in, tristique ex. Maecenas vestibulum diam nec laoreet volutpat. Curabitur maximus arcu sit amet enim viverra porttitor. Suspendisse turpis lorem, egestas quis justo vel, commodo placerat dolor. Vivamus mollis dolor eros, non commodo dolor pharetra eget. Sed ac purus blandit, dignissim est non, vestibulum est. Praesent vehicula facilisis turpis. Suspendisse potenti. Sed eleifend dignissim augue egestas ornare.</p>
+					<p>Etiam imperdiet risus id fringilla rutrum. Morbi posuere orci quis libero eleifend, ut rhoncus purus tempus. Aenean auctor posuere massa a sagittis. Aliquam aliquet diam quis vulputate rhoncus. Pellentesque non elit diam. Mauris pharetra interdum viverra. Aenean et sodales leo, sit amet auctor lorem. Donec aliquet massa eu est tristique varius. Duis ut venenatis dui, in aliquam tellus. Ut non eleifend nunc. Nullam aliquet libero id turpis blandit, vel aliquet felis ullamcorper. Phasellus fermentum risus id magna laoreet, eget semper arcu fermentum.</p>
+				</div>
+				 <div class="center-this-container">
+					<a href="#" class="main-button blue-button">Pay Dues Now</a>
+					<a href="#duesNotify" id="duesNotification"class="main-button blue-button">Remind Me</a>
+				</div>
+			</div>
+			<div id="tab-3" class="tab-content" role="tabpanel" >
+				<p>Your annual update is upcoming on January 30, 2017.</p>
+				<div class="pulled-text">
+					<p>This text is in a separate div that will be pulled from elsewhere</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et diam congue urna euismod mattis. Vestibulum pulvinar risus viverra augue tristique lobortis. Aliquam quis rhoncus libero. Nam aliquet dictum lorem ac faucibus. Proin scelerisque condimentum neque, non egestas sem scelerisque at. Nam volutpat dolor eget felis sagittis tempus. Nunc quis purus scelerisque, ultricies metus in, tristique ex. Maecenas vestibulum diam nec laoreet volutpat. Curabitur maximus arcu sit amet enim viverra porttitor. Suspendisse turpis lorem, egestas quis justo vel, commodo placerat dolor. Vivamus mollis dolor eros, non commodo dolor pharetra eget. Sed ac purus blandit, dignissim est non, vestibulum est. Praesent vehicula facilisis turpis. Suspendisse potenti. Sed eleifend dignissim augue egestas ornare.</p>
+					<p>Etiam imperdiet risus id fringilla rutrum. Morbi posuere orci quis libero eleifend, ut rhoncus purus tempus. Aenean auctor posuere massa a sagittis. Aliquam aliquet diam quis vulputate rhoncus. Pellentesque non elit diam. Mauris pharetra interdum viverra. Aenean et sodales leo, sit amet auctor lorem. Donec aliquet massa eu est tristique varius. Duis ut venenatis dui, in aliquam tellus. Ut non eleifend nunc. Nullam aliquet libero id turpis blandit, vel aliquet felis ullamcorper. Phasellus fermentum risus id magna laoreet, eget semper arcu fermentum.</p>
+				</div>
+				 <div class="center-this-container">
+					<a href="#" class="main-button blue-button">Search for Courses</a>
+					<a href="#duesNotify" id="duesNotification"class="main-button blue-button">Remind Me</a>
+					     <div id ="duesNotify" style="display:none;">
+					 
+							<div id="dialogContent">
+								 <form action = "" method ="post" class="padding15">
+								 
+								  <div class="field form-group row">
+									  <label class="label col-md-3">When</label>
+									  <div class="control col-md-9">
+										 <select class="">
+											<option value="30">30 Days</option>
+											<option value="60">60 Days</option>
+											<option value="90">90 Days</option>
+										  </select>
+									</div>
+								  </div>
+								<div class="field form-group row">
+									 <label class="label col-md-3">How</label>
+									  <div class="control col-md-9">
+										  <input type="radio" name="when_notity" value="text" checked> Text
+										  <input type="radio" name="when_notity" value="email"> Email
+									</div>
+								  </div>
+								<div class="buttons">
+									 <input type="submit" value="submit" class ="notification btn primary action capitalize">
+								</div>
+								 </form> 
+							</div>
+
+					    </div>
+					
+					
+					
+					
+				</div>
+			</div>
+			<div id="tab-4" class="tab-content" role="tabpanel" >
+				<p>Nam rutrum vitae nisl sed fringilla. Nulla fringilla non dolor eu maximus. Fusce sed nisi pulvinar purus sodales condimentum nec sit amet ante. Nullam ac mauris turpis. Donec vel condimentum neque. Nunc diam quam, rutrum nec aliquet id, congue non arcu.</p>
+			</div>
+		</div>
+	</div><!-- Row -->
+</div><!-- Container -->
+<script type="text/javascript">
+        requirejs(['jquery','jquery/ui','vesbaseFancybox'],
+        function ($) {
+            $(document).ready(function() {
+				$("#btnForm").fancybox();
+				$("#duesNotification").fancybox();
+				
+                $('ul.tabs li').click(function(){
+                    var tab_id = $(this).attr('data-tab');
+
+                    $('ul.tabs li').removeClass('current');
+                    $('.tab-content').removeClass('current');
+
+                    $(this).addClass('current');
+                    $("#"+tab_id).addClass('current');
+                });
+			});
+        });
+</script>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+    <add id="TNA::top_level" module="TNA_Events" resource="Magento_Backend::content" sortOrder="10" title="TNA"/>
+    <add id="TNA::ce" module="TNA_Events" parent="TNA::top_level" resource="Magento_Backend::content" sortOrder="20" title="Continuing Education"/>
+    <add action="tna_events/continuingeducation/index" id="TNA::tna_continuing_education" module="TNA_Events" parent="TNA::ce" resource="Magento_Backend::content" sortOrder="10" title="Continuing Education Table"/>
+    <add id="TNA::settings" module="TNA_Events" parent="TNA::top_level" resource="Magento_Backend::content" sortOrder="30" title="Settings"/>
+    <add  id="TNA::module_settings" module="TNA_Events" parent="TNA::settings" resource="Magento_Backend::content" sortOrder="10" title="Settings Panel"/>
+  </menu>
+</config>

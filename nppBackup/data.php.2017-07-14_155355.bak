@@ -1,0 +1,21 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('../app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+
+$productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
+ 
+
+$sku = '325104'; // YOUR PRODUCT SKU
+ 
+ 
+// get product by product sku
+$product = $productRepository->get($sku);
+
+	
+?>

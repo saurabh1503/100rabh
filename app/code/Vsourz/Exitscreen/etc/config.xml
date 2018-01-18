@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+	    <exitscreen>
+	        <general>
+	            <enabled>1</enabled>
+	        </general>
+	    </exitscreen>
+		 <exitscreen>
+	        <general>
+	            <popup_width>auto</popup_width>
+	        </general>
+	    </exitscreen>
+		<exitscreen>
+	        <general>
+	            <popup_height>auto</popup_height>
+	        </general>
+	    </exitscreen>
+		<exitscreen>
+	        <general>
+	            <cookie_interval>24</cookie_interval>
+	            <cookie_delay>0</cookie_delay>
+	        </general>
+	    </exitscreen>
+		<exitscreen>
+	        <general>
+	            <popup_block>vsourz-exit-screen</popup_block>
+	        </general>
+	    </exitscreen>
+		<exitscreen>
+	        <general>
+	            <notverifyblock>vsourz-age-gate-disagree</notverifyblock>
+	        </general>
+	    </exitscreen>
+		<exitscreen>
+	        <general>
+	            <pages>no-route,home,enable-cookies,privacy-policy-cookie-restriction-mode,about-us</pages>
+	        </general>
+	    </exitscreen>
+		<exitscreen>
+	        <general>
+	            <load_jquery_library>0</load_jquery_library>
+	        </general>
+	    </exitscreen>
+	</default>
+</config>

@@ -1,0 +1,23 @@
+<?php 
+// $row = 1;
+// if (($handle = fopen("google-data-feed.csv", "r")) && $myfile = fopen("newfile.txt", "w")) {
+    // while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        // $num = count($data);
+        // echo "<p> $num fields in line $row: <br /></p>\n";
+        // $row++;
+        // fputcsv($myfile, $data);
+    // }
+    // fclose($handle);
+    // fclose($myfile);
+// }
+
+$section = file_get_contents('google-data-feed.csv');
+$File = "file.txt"; 
+$File = str_replace(',','"','#',$File); 
+ $Handle = fopen($File, 'w');
+ $Data = $section; 
+   fwrite($Handle, $Data);
+ print "Data Written"; 
+ fclose($Handle);  
+
+?>

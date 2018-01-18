@@ -1,0 +1,5 @@
+alert(1);
+jQuery('.nav-1 > a,.nav-4 > a,.nav-6 > a,.nav-7 > a').attr("href", "#");
+jQuery('img.sp-image').click(function() {
+window.location='/promotions.aspx';	
+ });

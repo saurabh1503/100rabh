@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<!--<event name="customer_customer_authenticated">
+		<observer instance="TNA\Profile\Observer\Customer\CustomerAuthenticated" name="tna_profile_observer_customer_customerauthenticated_customer_customer_authenticated"/>
+	</event>
+	<event name="customer_save_after_data_object">
+		<observer instance="TNA\Profile\Observer\Customer\SaveAfterDataObject" name="tna_profile_observer_customer_saveafterdataobject_customer_save_after_data_object"/>
+	</event>-->
+</config>

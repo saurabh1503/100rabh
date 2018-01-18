@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Salesforce extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\Salesforce\Block\Adminhtml\Map\Edit" name="salesforce_map_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magenest\Salesforce\Block\Adminhtml\Map\Edit\Tabs" name="map_edit_tabs">
+                <block class="Magenest\Salesforce\Block\Adminhtml\Map\Edit\Tab\Main" name="map_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">salesforce_mapping_tabs</argument>
+                    <argument name="block" xsi:type="string">map_edit_tab_main</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="js">
+            <block class="Magenest\Salesforce\Block\Adminhtml\Map\UpdateFields" template="Magenest_Salesforce::salesforce/update_fields.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

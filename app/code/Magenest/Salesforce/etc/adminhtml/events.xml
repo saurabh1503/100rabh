@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Salesforce extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_delete_commit_after">
+        <observer name="salesforce_deleteCustomer" instance="Magenest\Salesforce\Observer\Customer\Delete"/>
+    </event>
+    <event name="adminhtml_customer_save_after">
+        <observer name="salesforce_updateCustomer" instance="Magenest\Salesforce\Observer\Customer\Edit"/>
+    </event>
+    <event name="catalog_product_save_after">
+        <observer name="salesforce_syncProduct" instance="Magenest\Salesforce\Observer\Product\Update"/>
+    </event>
+    <event name="catalog_product_delete_commit_after">
+        <observer name="salesforce_deleteProduct" instance="Magenest\Salesforce\Observer\Product\Delete"/>
+    </event>
+    <event name="sales_order_save_commit_after">
+        <observer name="salesforce_syncOrder" instance="Magenest\Salesforce\Observer\Order\Create"/>
+    </event>
+    <event name="catalogrule_rule_save_commit_after">
+        <observer name="salesforce_syncCampaign" instance="Magenest\Salesforce\Observer\Campaign\Update"/>
+    </event>
+</config> 

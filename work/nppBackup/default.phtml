@@ -1,0 +1,116 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php /** @var \Magento\Framework\Pricing\Render\Amount $block */ 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$request = $objectManager->get('\Magento\Framework\App\Request\Http'); 
+$pshowprice = $block->getSaleableItem()->getPshowprice();
+$pproductypeid = $block->getSaleableItem()->getPproducttypeid();
+$clocks= $block->getSaleableItem()->getAttributeSetName('specifications-clocks');
+$productId = $block->getSaleableItem()->getId();
+$msrp = $block->getSaleableItem()->getMsrp();
+$soldby = $block->getSaleableItem()->getSoldBy();
+$mainprice = $block->getSaleableItem()->getPrice();
+if (!empty($msrp) && !empty($soldby)){
+	
+ $regularprice = round(($msrp/$soldby),2);
+	
+}
+if (!empty($mainprice) && !empty($soldby)){
+	
+ $sale = round(($mainprice/$soldby),2);	
+
+}
+?>
+<?php if (($request->getFullActionName() == 'catalog_category_view') || empty($soldby)) { ?>
+
+<span class="price-container <?php /* @escapeNotVerified */ echo $block->getAdjustmentCssClasses() ?>"
+        <?php echo $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>>
+    <?php if ($block->getDisplayLabel()): ?>
+        <span class="price-label"><?php /* @escapeNotVerified */ echo $block->getDisplayLabel(); ?></span>
+    <?php endif; ?>
+    <span <?php if ($block->getPriceId()): ?> id="<?php /* @escapeNotVerified */ echo $block->getPriceId() ?>"<?php endif;?>
+        <?php echo($block->getPriceDisplayLabel()) ? 'data-label="' . $block->getPriceDisplayLabel() . $block->getPriceDisplayInclExclTaxes() . '"' : '' ?>
+        data-price-amount="<?php /* @escapeNotVerified */ echo $block->getDisplayValue(); ?>"
+        data-price-type="<?php /* @escapeNotVerified */ echo $block->getPriceType(); ?>"
+        class="price-wrapper <?php /* @escapeNotVerified */ echo $block->getPriceWrapperCss(); ?>"
+        <?php echo $block->getSchema() ? ' itemprop="price"' : '' ?>>
+        <?php /* @escapeNotVerified */ echo $block->formatCurrency($block->getDisplayValue(), (bool)$block->getIncludeContainer()) ?>
+    </span>
+    <?php if ($block->hasAdjustmentsHtml()): ?>
+        <?php echo $block->getAdjustmentsHtml() ?>
+    <?php endif; ?>
+    <?php if ($block->getSchema()): ?>
+        <meta itemprop="priceCurrency" content="<?php /* @escapeNotVerified */ echo $block->getDisplayCurrencyCode()?>" />
+    <?php endif; ?>
+</span>
+<?php } else { ?>
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ 
+?>
+
+<?php
+/** @var \Magento\Catalog\Pricing\Render\FinalPriceBox $block */
+
+
+/** ex: \Magento\Catalog\Pricing\Price\RegularPrice */
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $priceModel */
+$priceModel = $block->getPriceType('regular_price');
+
+/** ex: \Magento\Catalog\Pricing\Price\FinalPrice */
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $finalPriceModel */
+$finalPriceModel = $block->getPriceType('final_price');
+
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+$schema = ($block->getZone() == 'item_view') ? true : false;
+
+/*** Get Customer Group ***/
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create('Magento\Customer\Model\Session');
+$customerGroup = '';
+if($customerSession->isLoggedIn()) {
+  $customerGroup = $customerSession->getCustomer()->getGroupId();
+}
+
+/***   End ***/
+
+
+
+?>
+
+<?php if (($pshowprice == 3 || $pshowprice == 4) && $customerGroup != 4)   { ?>
+<style type="text/css">
+.catalog-product-view .price-box {display: none !important;}
+</style><?php } ?>
+<?php if (!empty($soldby)){ ?>
+<span class="old-price">
+	<span class="price-container " itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+        <span class="price-label">Regular Price:</span>
+        <span id="old-price-<?php echo $block->getSaleableItem()->getId(); ?>" data-price-amount="<?php echo $regularprice; ?>" data-price-type="oldPrice" class="price-wrapper " itemprop="price"><span class="price"><?php echo $regularprice; ?></span></span>
+        <meta itemprop="priceCurrency" content="USD">
+    </span>
+</span>	
+<?php if ($pshowprice == 1 || $customerGroup == 4 || $pproductypeid == 1 ||  $pproductypeid == 8)   { ?>
+	<br>
+<span class="special-price">
+	<span class="price-container " itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+        <span class="price-label">Sale Price:</span>
+        <span id="product-price-<?php echo $block->getSaleableItem()->getId(); ?>" data-price-amount="<?php echo $sale; ?>" data-price-type="finalPrice" class="price-wrapper " itemprop="price"><span class="price"><?php echo $sale; ?></span></span>
+        <meta itemprop="priceCurrency" content="USD">
+    </span>
+</span>
+<?php } ?>		
+<?php } ?>	
+	
+<?php } ?>

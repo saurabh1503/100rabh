@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="vsourz" translate="label" sortOrder="500">
+            <label>Vsourz</label>
+        </tab>
+        <section id="exitscreen" translate="label" type="text" sortOrder="600" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+            <class>separator-top</class>
+            <label>Exitscreen Pop-up</label>
+            <tab>vsourz</tab>
+            <resource>Vsourz_Exitscreen::config_exitscreen</resource>
+            <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <label>General Settings</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10"  showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Extension</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+			   <field id="pages" translate="label" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+					<label>Pages</label>
+					 <comment>Select the CMS Page for which page you want display Exitscreen pop up.</comment>
+					<source_model>Vsourz\Exitscreen\Model\Page</source_model>
+			   </field>
+			   <field id="popup_block" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Promotion Blocks</label>
+                    <comment>Select the Static block for which block content you want show on Exitscreen pop up.</comment>
+                    <source_model>Magento\Cms\Model\ResourceModel\Block\Collection</source_model>
+               </field>			   
+			   <field id="load_jquery_library" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Load JQuery Library</label>
+                    <comment>Select YES if JQuery library in not included in your Magento Project</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+               </field>
+			   <field id="cookie_interval" translate="label comment" type="text" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cookie Interval</label>
+                    <comment>Total time (In Hours) cookie is stored</comment>
+                </field>
+				<field id="cookie_delay" translate="label comment" type="text" sortOrder="65" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cookie Delay</label>
+                    <comment>Total time (In Minutes) after which popup should appear</comment>
+                </field>
+				<field id="popup_width" translate="label comment" type="text" sortOrder="70" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Pop-Up Width</label>
+                    <comment>Width of POP-UP window in px. Set width more then 300px for increase width. Enter auto for automatic width</comment>
+                </field>
+				<field id="popup_height" translate="label comment" type="text" sortOrder="80" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Pop-Up Height</label>
+                    <comment>Height of POP-UP window in px. Set height  more then 500px for increase height. Enter auto for automatic height</comment>
+                </field>				
+            </group>
+        </section>
+    </system>
+</config>

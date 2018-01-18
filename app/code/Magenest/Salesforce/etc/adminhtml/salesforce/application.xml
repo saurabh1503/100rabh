@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="config" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+        <fieldset_css>salesforce-connection-app</fieldset_css>
+        <label>Setup And Authentication SalesforceCRM Account</label>
+        <field id="is_connected" translate="label" type="hidden" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Connection Status</label>
+            <config_path>salesforcecrm/config/is_connected</config_path>
+            <frontend_model>Magenest\Salesforce\Block\System\Config\Form\Field\Connection</frontend_model>
+        </field>
+        <field id="email" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Email</label>
+            <tooltip><![CDATA[Account must Edition below:
+                    <ol><li>Enterprise Edition</li>
+                    <li>Unlimited Edition</li>
+                    <li>Performance Edition</li>
+                    <li>Developer Edition</li>
+                    <li>Professional Edition(bought API package)</li>
+                    </ol>]]></tooltip>
+            <config_path>salesforcecrm/config/email</config_path>
+            <depends>
+                <field id="is_connected">0</field>
+            </depends>
+        </field>
+        <field id="passwd" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Password</label>
+            <frontend_model>Magenest\Salesforce\Block\System\Config\Form\Field\Password</frontend_model>
+            <tooltip>Enter Password of SalesforceCRM account</tooltip>
+            <config_path>salesforcecrm/config/passwd</config_path>
+            <depends>
+                <field id="is_connected">0</field>
+            </depends>
+        </field>
+        <field id="client_id" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Consumer Key</label>
+            <tooltip>Enter Consumer key of connect app</tooltip>
+            <config_path>salesforcecrm/config/client_id</config_path>
+            <depends>
+                <field id="is_connected">0</field>
+            </depends>
+        </field>
+        <field id="client_secret" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Consumer Secret</label>
+            <tooltip>Enter Consumer secret of connect app</tooltip>
+            <config_path>salesforcecrm/config/client_secret</config_path>
+            <depends>
+                <field id="is_connected">0</field>
+            </depends>
+        </field>
+        <field id="security_token" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Security Token</label>
+            <config_path>salesforcecrm/config/security_token</config_path>
+            <tooltip>
+                <![CDATA[
+                        Receive security token via email.</br>
+                        Steps to reset in Salesforce:<br/>
+                        My settings > Personal > Reset My Security Token > Reset Securty Token]]></tooltip>
+            <depends>
+                <field id="is_connected">0</field>
+            </depends>
+        </field>
+        <field id="get_access_token" translate="button_label" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+            <button_label>Get Access</button_label>
+            <frontend_model>Magenest\Salesforce\Block\Adminhtml\System\Config\GetAuth</frontend_model>
+            <tooltip>Click this button to get Auth Tokens automatically</tooltip>
+            <depends>
+                <field id="is_connected">0</field>
+            </depends>
+        </field>
+        <field id="access_token" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Access Token</label>
+            <tooltip>Access Token expires after 30 minutes and auto refresh</tooltip>
+            <config_path>salesforcecrm/config/access_token</config_path>
+            <attribute type="readonly">readonly</attribute>
+            <depends>
+                <field id="is_connected">1</field>
+            </depends>
+        </field>
+        <field id="instance_url" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Instance URL</label>
+            <tooltip>URL of SalesforceCRM with each account edition</tooltip>
+            <config_path>salesforcecrm/config/instance_url</config_path>
+            <attribute type="readonly">readonly</attribute>
+            <depends>
+                <field id="is_connected">1</field>
+            </depends>
+        </field>
+        <field id="salesforce_app_disconnect" translate="button_label" sortOrder="90" showInDefault="1" showInWebsite="0" showInStore="0">
+            <button_label>Disconnect</button_label>
+            <frontend_model>Magenest\Salesforce\Block\Adminhtml\System\Config\Disconnect</frontend_model>
+            <depends>
+                <field id="is_connected">1</field>
+            </depends>
+        </field>
+    </group>
+</include>

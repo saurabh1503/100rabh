@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Salesforce extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ */
+?>
+<div class="actions actions-disconnect">
+    <div id="disconnect-result" class="message-validation hide" data-ui-id="request-salesforcecrm-result"></div>
+    <button  class="action-validate-disconnect" type="button" data-ui-id="send-disconnect-request" id="<?php echo $block->getHtmlId() ?>">
+        <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+</div>
+<script>
+    require(['jquery'], function(jQuery){
+        jQuery('[data-ui-id="send-disconnect-request"]').click(function(){
+            var url = '<?php echo $block->getUrl('salesforce/system_config_getauth/disconnect'); ?>';
+            jQuery.ajax({
+                type: "GET",
+                url: url,
+                showLoader: true,
+                success: function(){
+                    location.reload();
+                },
+                error: function () {
+                    var result_token = jQuery('[data-ui-id="request-salesforcecrm-result"]');
+                    result_token.removeClass('hide').addClass('error');
+                    result_token.html('Cant disconnect, some errors occur');
+                }
+            });
+        });
+    });
+</script>

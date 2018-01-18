@@ -1,0 +1,5 @@
+<?php 
+$date = date('Y-m-d H:i:s');
+$fromDate = date('Y-m-d H:i:s', strtotime($date .' -1 day'));
+
+?>

@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="TNA_Profile::ICE" sortOrder="10" title="ICE">
+					<resource id="TNA_Profile::ICE_save" sortOrder="10" title="Save ICE"/>
+					<resource id="TNA_Profile::ICE_delete" sortOrder="20" title="Delete ICE"/>
+					<resource id="TNA_Profile::ICE_update" sortOrder="30" title="Update ICE"/>
+					<resource id="TNA_Profile::ICE_view" sortOrder="40" title="View ICE"/>
+				</resource>
+				<resource id="TNA_Profile::Archive" sortOrder="10" title="Archive">
+					<resource id="TNA_Profile::Archive_save" sortOrder="10" title="Save Archive"/>
+					<resource id="TNA_Profile::Archive_delete" sortOrder="20" title="Delete Archive"/>
+					<resource id="TNA_Profile::Archive_update" sortOrder="30" title="Update Archive"/>
+					<resource id="TNA_Profile::Archive_view" sortOrder="40" title="View Archive"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

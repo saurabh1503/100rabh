@@ -1,0 +1,45 @@
+<?php 
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+$date = date('Y-m-d H:i:s');
+$fromDate = date('Y-m-d H:i:s', strtotime($date .' -100 day'));
+
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+$collection = 	$productCollection->addAttributeToSelect('sku')
+								->addFieldToFilter('created_at', array('from'=>$fromDate, 'to'=>$date))
+								->load();
+echo $collection->getSelect();die;
+foreach ($collection as $product){
+     echo 'sku  =  '.$product->getSku().'<br>';
+}								
+								
+// $input = fopen('nextopia-feed.csv', 'r');  //open for reading
+// $output = fopen('temporary.csv', 'w'); //open for writing
+// while( false !== ( $data = fgetcsv($input) ) ){  //read each line as an array
+
+   // //modify data here
+   // if ($data[1] == '10031') {
+      // //Replace line here
+      // $data[5] = 6;
+      // echo("SUCCESS|Price changed!");
+   // }
+
+   // //write modified data to new file
+   // fputcsv( $output, $data);
+// }
+
+// //close both files
+// fclose( $input );
+// fclose( $output );
+
+// //clean up
+// unlink('nextopia-feed.csv');// Delete obsolete BD
+// rename('temporary.csv', 'nextopia-feed.csv');								
+?>
+

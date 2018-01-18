@@ -1,0 +1,31 @@
+<?php
+$pdoParams = array(
+    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true
+);
+
+$params = array(
+    'host'           => 'CHETUIWK1437\SQL2012',
+    'username'       => 'sa',
+    'password'       => 'Chetu@123',
+    'dbname'         => 'efloors',
+    'driver_options' => $pdoParams
+);
+
+$db = Zend_Db::factory('Pdo_Mysql', $params);
+
+echo $db->getConnection()->getAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY);
+
+?>
+
+
+<?php
+$serverName = "CHETUIWK1437\SQL2012"; //serverName\instanceName
+			$connectionInfo = array("Database" => "efloors", "UID" => "sa", "PWD" => "Chetu@123");
+			$conn = sqlsrv_connect($serverName, $connectionInfo);
+			if ($conn) {
+				echo "Connection established.<br />";
+			} else {
+				echo "Connection could not be established.<br />";
+				die(print_r(sqlsrv_errors(), true));
+			}
+?>

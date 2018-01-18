@@ -1,0 +1,17 @@
+<?php 
+
+$filename = "nextopia-feed.csv";
+
+$csvData = file_get_contents($filename);
+$csv = explode("\n", $csvData);
+echo "<pre>"; print_r($csv);die;
+$newData = array();
+foreach($csv as $rowData) {
+    $row = explode(";", $rowData);
+    //change your data here
+    $newData[] = implode(";", $row);
+}
+$newData = implode("\n", $newData);
+file_put_contents($filename, $newData);
+
+?>

@@ -1,0 +1,428 @@
+   <h1><?php //echo $block->getRequestQuotationTxt(); ?></h1>  
+   
+ <style>
+        .container-wrap { 
+         width: 1022px;
+         margin: 0px auto 0 auto;
+         height: auto;
+         padding-top: 31px;
+        }
+         
+         * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+         }
+      
+
+
+     /*******************moldings************************/
+         
+          .mold-static-content {
+            width: 100%;
+            height: auto;
+            overflow: auto;
+            margin: 20px auto 20px auto;
+        }
+          .mold-static-content {
+            height: auto;
+            overflow: hidden;
+            text-transform: none;
+            padding: 10px;
+            color: #000;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: 1px solid #ccc;
+            clear: both;
+            margin-bottom: 20px;
+                font-size: 18px;
+         
+            color: #464646;
+        }
+        .clear-fq{
+             clear:both;
+                
+            
+         }
+         .mr-15{
+             margin: 0px -15px;
+         }
+          .fq-heading{
+               font-size: 25px;
+                line-height: 42px;
+                color: #464646;
+                padding-right: 15px;
+                margin: 0px;
+                font-weight: bold;
+                 margin-bottom: 10px;
+         }
+         .mold-static-content p{font-size: 18px;
+            line-height: 22px;
+            margin: 0px;}
+         .fq-sub-heading{
+            font-size: 18px;
+            line-height: 42px;
+            color: #464646;
+            padding-right: 15px;
+            margin: 0px;
+            font-weight: bold;
+         }
+         .fq-hr {
+               display: block;
+            border-width: 1px;
+            padding: 0px;
+            margin: 0px 0px 20px 0px;
+            border-color: #f3f3f3;
+            border-style: solid;
+          }
+         .left-fq{
+             width: 35%;
+                float: left;
+            font-size: 16px;
+            line-height: 36px;
+            color: #888585;           
+            padding-right: 15px;
+            padding-left: 15px;
+         }
+         .right-fq{
+             width:65%;
+             float:left;            
+            padding-right: 15px;
+            padding-left: 15px;
+         }
+         .right-fq input.fq-input{
+             width: 100%;
+             border: 1px solid #e2e1e1;
+             line-height: 22px;
+             margin-bottom: 15px;
+             display: inline-block;
+             outline: 0;
+             padding: 6px 12px;
+             vertical-align: middle;
+             overflow: hidden;
+             cursor: pointer;
+             box-shadow: -1px 1px #f2f2f2;
+            
+         }
+         .right-fq select.fq-select{
+              width: 100%;
+             border: 1px solid #e2e1e1;
+             line-height: 22px;
+             margin-bottom: 15px;
+             display: inline-block;
+             outline: 0;
+             height: 36px;
+             padding: 6px 8px;        
+             vertical-align: middle;
+             overflow: hidden;
+             cursor: pointer;
+             box-shadow: -1px 1px #f2f2f2;
+             color: #b1afaf;
+             
+         }
+         
+       
+         .fq-city{width:46%;
+              float:left;      margin-right: 2%;}
+         
+         .fq-state{width:25%;
+              float:left;     margin-right: 2%; }
+         
+         .fq-zip{width:25%;
+              float:left;}
+         .fq-center-block{  width:60%; float: left}
+         .fq-radio{
+             width: 50%;
+                float: left;
+            font-size: 16px;
+            line-height: 36px;
+            color: #888585;           
+            padding-right: 15px;
+            padding-left: 15px; 
+         }
+         .fq-quantity{width:30%;
+              float:left; }
+         .fq-product{width:68%;
+              float:left;      margin-right: 2%;}
+         .offset-fq{margin-left:34%; display: block}
+         .offset-fq .fq-radio {width:100%; display: block}
+         .text-right{text-align:right}
+        .text-center{text-align:center}
+         .submit-offset-fq{margin-left:36%; margin-top: 30px}
+         .submit-fq {
+            font-size: 16px;
+            position: relative;
+            color: #fff ;          
+            line-height: 32px;
+            
+            margin: 2px 2px 0 0;
+            border: 1px solid #3e8a40;
+            border-radius: 3px;
+            background: #59C63B;
+            background: -webkit-gradient(linear, left top, left bottom, from(#59C63B), to(#39A626));
+            background: -moz-linear-gradient(top, #59C63B, #39A626);
+            background: linear-gradient(to bottom, #59C63B, #39A626);
+            padding: 2px 10px 0px 10px;
+            margin-bottom: 5px;
+       }
+         .submit-fq.small{ line-height: 22px; font-size: 12px;}
+         /*.submit-chat{
+            font-size: 16px;
+            position: relative;
+            color: #fff;
+            line-height: 32px;
+          
+            margin: 2px 2px 0 0;
+            border: 1px solid #3e8a40;
+            border-radius: 3px;
+            background: #59C63B;
+            background: -webkit-gradient(linear, left top, left bottom, from(#59C63B), to(#39A626));
+            background: -moz-linear-gradient(top, #59C63B, #39A626);
+            background: linear-gradient(to bottom, #59C63B, #39A626);
+            padding: 5px 10px;
+            margin-bottom: 5px;
+            text-decoration: none;
+             
+         } */
+         .requestquote_form .container-wrap {
+            padding-top: 0;
+         }  
+		#requestquoteForm .radio, #requestquoteForm input[type="checkbox"], #requestquoteForm input[type="radio"] {
+			display: inline-block;
+			width: auto;
+			height: 1rem;
+			margin: 0.44rem 0.44rem 0 0;
+}		 
+   </style>
+   
+ 
+   
+   <form action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>" method="post" class="requestquote_form" id="requestquoteForm">
+   <div class="container-wrap">
+           <div class="mold-static-content">        
+            <h1 class="fq-heading">Request a Flooring Quote Today</h1>
+            <p>
+                Thank you for visiting Efloors.com! Simply complete the form below and one of our certified flooring specialists will send you a personal quote.
+            </p>
+            <p>
+               We are also available toll-free at 1-888-522-5456 or <a style="cursor:pointer;" onclick="liveagent.startChat('573j0000000Gn8Z')" class="submit-chat">LIVE CHAT</a>
+            </p>
+               
+         <h3 class="fq-sub-heading">Your Personal Information:</h3>
+            <hr class="fq-hr"/>   
+         <form class="fq-center-block">
+             <div class="clear-fq mr-15">
+               <label class="left-fq">Full Name :</label>
+               <div class="right-fq"><input type="text" class="fq-input" name="fullname" placeholder="Full-Name" required /></div>
+             </div>
+              <div class="clear-fq mr-15">
+               <label class="left-fq">Address :</label>
+               <div class="right-fq">
+                    <input type="text" class="fq-input" name="firstaddress" placeholder="Address1" required />
+                    <input type="text" class="fq-input" name="secondaddress" placeholder="Address2" />
+                    <div class="fq-city"> 
+                        <input type="text" class="fq-input" name="city" placeholder="City" /> </div>
+                    <div class="fq-state"> 
+                        <select class="fq-select" name="state" > 
+                          <option> Select State </option>               
+							<option value="Alabama" style="color:#999;">AL</option>
+							<option value="Arizona" style="color:#999;">AZ</option>
+							<option value="Arkansas" style="color:#999;">AR</option>
+							<option value="California" style="color:#999;">CA</option>
+							<option value="Colorado" style="color:#999;">CO</option>
+							<option value="Connecticut" style="color:#999;">CT</option>
+							<option value="Delaware" style="color:#999;">DE</option>
+							<option value="District Of Columbia" style="color:#999;">DC</option>
+							<option value="Florida" style="color:#999;">FL</option>
+							<option value="Georgia" style="color:#999;">GA</option>
+							<option value="Idaho" style="color:#999;">ID</option>
+							<option value="Illinois" style="color:#999;">IL</option>
+							<option value="Indiana" style="color:#999;">IN</option>
+							<option value="Iowa" style="color:#999;">IA</option>
+							<option value="Kansas" style="color:#999;">KS</option>
+							<option value="Kentucky" style="color:#999;">KY</option>
+							<option value="Louisiana" style="color:#999;">LA</option>
+							<option value="Maine" style="color:#999;">ME</option>
+							<option value="Maryland" style="color:#999;">MD</option>
+							<option value="Massachusetts" style="color:#999;">MA</option>
+							<option value="Michigan" style="color:#999;">MI</option>
+							<option value="Minnesota" style="color:#999;">MN</option>
+							<option value="Mississippi" style="color:#999;">MS</option>
+							<option value="Missouri" style="color:#999;">MO</option>
+							<option value="Montana" style="color:#999;">MT</option>
+							<option value="Nebraska" style="color:#999;">NE</option>
+							<option value="Nevada" style="color:#999;">NV</option>
+							<option value="New Hampshire" style="color:#999;">NH</option>
+							<option value="New Jersey" style="color:#999;">NJ</option>
+							<option value="New Mexico" style="color:#999;">NM</option>
+							<option value="New York" style="color:#999;">NY</option>
+							<option value="North Carolina" style="color:#999;">NC</option>
+							<option value="North Dakota" style="color:#999;">ND</option>
+							<option value="Ohio" style="color:#999;">OH</option>
+							<option value="Oklahoma" style="color:#999;">OK</option>
+							<option value="Oregon" style="color:#999;">OR</option>
+							<option value="Pennsylvania" style="color:#999;">PA</option>
+							<option value="Rhode Island" style="color:#999;">RI</option>
+							<option value="South Carolina" style="color:#999;">SC</option>
+							<option value="South Dakota" style="color:#999;">SD</option>
+							<option value="Tennessee" style="color:#999;">TN</option>
+							<option value="Texas" style="color:#999;">TX</option>
+							<option value="Utah" style="color:#999;">UT</option>
+							<option value="Vermont" style="color:#999;">VT</option>
+							<option value="Virginia" style="color:#999;">VA</option>
+							<option value="Washington" style="color:#999;">WA</option>
+							<option value="West Virginia" style="color:#999;">WV</option>
+							<option value="Wisconsin" style="color:#999;">WI</option>
+							<option value="Wyoming" style="color:#999;">WY</option>
+                        </select> </div>
+                    <div class="fq-zip">
+                        <input type="text" class="fq-input" name="zip" placeholder="Zip" >
+                    </div>
+                    <select class="fq-select" name="country" > 
+                          <option value="United States of America">United States of America</option>
+                       
+                        </select>                    
+                  </div>                  
+             </div>
+              <div class="clear-fq mr-15">
+               <label class="left-fq">Email :</label>
+               <div class="right-fq"><input type="email" name="email" class="fq-input" placeholder="Email" required ></div>
+             </div>
+              <div class="clear-fq mr-15">
+               <label class="left-fq">Phone No :</label>
+               <div class="right-fq"><input type="text" name="phone" class="fq-input" placeholder="Phone Number" required ></div>
+             </div>
+             <div class="clear-fq mr-15">
+               <label class="left-fq">Memo :</label>
+               <div class="right-fq"><input type="text" name="memo" class="fq-input" placeholder="Memo" ></div>
+             </div>
+             <div class="clear-fq mr-15">
+               <label class="left-fq">Which Best Describes You :</label>
+               <div class="right-fq"> 
+                   <div class="clear-fq mr-15">
+                       <label class="fq-radio"><input type="radio" name="best_discribe" value="Home Owner" required> Home Owner</label>
+                    <label class="fq-radio">  <input type="radio" name="best_discribe" value="Installer" required> Installer</label>
+                   </div>
+                   <div class="clear-fq mr-15">
+                   <label class="fq-radio"> <input type="radio" name="best_discribe" value="Contractor" required> Contractor</label>
+                   <label class="fq-radio"> <input type="radio" name="best_discribe" value="Business Buyer" required> Business Buyer</label>
+                   </div>
+                   <div class="clear-fq mr-15">
+                   <label class="fq-radio"> <input type="radio" name="best_discribe" value="Dealer" required> Dealer</label>
+                   </div>
+                </div>
+             </div>
+             <div class="clear-fq mr-15">
+               <label class="left-fq">Contact Me By :</label>
+               <div class="right-fq"> 
+                   <div class="clear-fq mr-15">
+                 <label class="fq-radio"><input type="radio" name="contactby" value="Email" required>Email</label>
+                 <label class="fq-radio">  <input type="radio" name="contactby" value="Phone" required>Phone</label>
+                 </div>
+             </div>
+         </div>
+         <div class="clear-fq mr-15  first-product-class">
+               <label class="left-fq">Product 1:</label>
+               <div class="right-fq">
+                    <div class="fq-product">
+                   <input type="text" class="fq-input" name="product_description_product1" placeholder="Product 1" >
+                   </div>
+                    <div class="fq-quantity">
+                        <input type="text"  class="fq-input" name="product_description_qty1" placeholder="Quantity" >
+                   </div>
+                   </div>
+         </div>
+		<!-- <div class='product-btn' > Add Product </div>-->
+       <div class="clear-fq mr-15">
+               <label class="left-fq">Product 2:</label>
+                <div class="right-fq">
+                    <div class="fq-product">
+                   <input type="text" class="fq-input" name="product_description_product2" placeholder="Product 2" >
+                   </div>
+                    <div class="fq-quantity">
+                        <input type="text" class="fq-input" name="product_description_qty2" placeholder="Quantity" >
+                   </div>
+                   </div>
+         </div>
+        <div class="clear-fq mr-15">
+               <label class="left-fq">Product 3:</label>
+                <div class="right-fq">
+                    <div class="fq-product">
+                       <input type="text" class="fq-input" name="product_description_product3" placeholder="Product 3" >
+                   </div>
+                    <div class="fq-quantity">
+                        <input type="text" class="fq-input" name="product_description_qty3" placeholder="Quantity" >
+                   </div>
+                   </div>
+         </div>
+             
+        <div class=" text-right btn-class-before">
+                   <button type="button" class="submit-fq small product-btn_class">Add Line</button>
+         </div>
+             
+        <!--<div class="clear-fq offset-fq">
+                   <lable class="fq-radio"> <input type="checkbox" name="email_spam"> Click here to prevent email spam.</lable>
+         </div>--> 
+        <div class="clear-fq mr-15 cus-section">
+               <label class="left-fq"></label>
+                <div class="right-fq">
+                    <div class="fq-product">
+                       <script src='https://www.google.com/recaptcha/api.js'></script>
+			
+			<!--<div class="g-recaptcha" data-sitekey="6Lf79xwUAAAAAEvjbFJm5PESevv34lgQfU93_3uK"></div>
+			<div class="captcha-error" style="display:none; color:red;font-size:12px;">Please complete the captcha.</div>-->
+                   </div>
+                    
+                   </div>
+				   <div class="fq-quantity btn-section">
+                        <button type="submit" class="submit-fq" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+                   </div>
+         </div>   
+		<!--<div class="clear-fq mr-15">  
+			
+		</div>
+			 
+        <div class="submit-offset-fq">
+           
+           
+         </div>-->
+        </form>        
+               
+       </div>    
+      </div>        
+
+   </form>
+   
+    <script type="text/javascript">
+	 
+        require([
+			   'jquery',
+			],
+			function($) { 
+			  	var i=3;
+				$('.product-btn_class').click(function() {
+					   i++;
+				 
+				if(i<6) {
+				
+						jQuery('.btn-class-before').before("<div class='clear-fq mr-15'><label class='left-fq'>Product "+i+":</label><div class='right-fq'><div class='fq-product'><input type='text' class='fq-input' name='product_description_product"+i+"' placeholder='Product "+i+"' ></div><div class='fq-quantity'><input type='text' class='fq-input' name='product_description_qty"+i+"' placeholder='Quantity' ></div></div></div>");
+					// });
+				}				
+			
+			});
+			
+			// window.onload = function() {
+  // var recaptcha = document.forms["requestquoteForm"]["g-recaptcha-response"];
+  // recaptcha.required = true;
+  // recaptcha.oninvalid = function(e) {
+
+    // jQuery('.captcha-error').css('display','block');
+        // return false;
+   // }
+// }
+			});
+	 
+		
+		
+   </script>

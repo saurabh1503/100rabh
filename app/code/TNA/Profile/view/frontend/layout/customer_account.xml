@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <referenceContainer name="sidebar.main">
+      <referenceBlock name="customer_account_navigation">
+        <!--<block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-notifications-link">
+          <arguments>
+            <argument name="path" xsi:type="string">customer/notifications</argument>
+            <argument name="label" xsi:type="string" translate="true">Notifications</argument>
+          </arguments>
+        </block>
+        <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-memberships-link">
+          <arguments>
+            <argument name="path" xsi:type="string">customer/membership</argument>
+            <argument name="label" xsi:type="string">Dues/Membership</argument>
+          </arguments>
+        </block>
+        <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-ice-link">
+          <arguments>
+            <argument name="path" xsi:type="string">customer/ice</argument>
+            <argument name="label" xsi:type="string">In Case Of Emergency Form</argument>
+          </arguments>
+        </block>-->
+      </referenceBlock>
+    </referenceContainer>
+  </body>
+</page>

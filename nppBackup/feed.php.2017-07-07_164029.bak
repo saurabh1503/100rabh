@@ -1,0 +1,41 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+	
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+$collection = $productCollection->create()
+            ->addAttributeToSelect('*')
+            ->load();
+
+foreach ($collection as $product){
+	
+    echo 'id  =  '.$product->getId().'<br>';
+    echo 'title  =  '.$product->getMetaTitle().'<br>';
+    echo 'description  =  '.$product->getDescription().'<br>';
+    echo 'link  =  '.$product->getProductUrl().'<br>';
+    echo 'price  =  '.$product->getPrice().'<br>';
+    echo 'brand  =  '.$product->getName().'<br>';
+    echo 'mpn  =  '.$product->getName().'<br>';
+    echo 'condition  =  '.$product->getName().'<br>';
+    echo 'image_link  =  '.$product->getName().'<br>';
+    echo 'google_product_category  =  '.$product->getName().'<br>';
+    echo 'product_type  =  '.$product->getTypeId().'<br>';
+    echo 'availability  =  '.$product->getName().'<br>';
+    echo 'shipping_weight  =  '.$product->getName().'<br>';
+    echo 'shipping  =  '.$product->getName().'<br>';
+}
+	
+
+
+
+?>
+
+
+

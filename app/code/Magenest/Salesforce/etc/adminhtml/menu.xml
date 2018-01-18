@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Salesforce extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_Salesforce::salesforce" title="Integration" translate="title" module="Magenest_Salesforce" sortOrder="60" resource="Magenest_Salesforce::salesforce"/>
+        <add id="Magenest_Salesforce::integration" title="Salesforce Integration" module="Magenest_Salesforce" sortOrder="10" parent="Magenest_Salesforce::salesforce" resource="Magenest_Salesforce::integration"/>
+        <add id="Magenest_Salesforce::mapping" title="Field Mapping" module="Magenest_Salesforce" sortOrder="10" parent="Magenest_Salesforce::integration" action="salesforce/map/index" resource="Magenest_Salesforce::mapping"/>
+        <add id="Magenest_Salesforce::report" title="View Report" module="Magenest_Salesforce" sortOrder="20" parent="Magenest_Salesforce::integration" action="salesforce/report/index" resource="Magenest_Salesforce::report"/>
+        <add id="Magenest_Salesforce::refresh" title="Refresh Access Token" module="Magenest_Salesforce" sortOrder="30" parent="Magenest_Salesforce::integration" action="salesforce/map/refresh" resource="Magenest_Salesforce::refresh"/>
+        <add id="Magenest_Salesforce::queue" title="Queue" module="Magenest_Salesforce" sortOrder="35" parent="Magenest_Salesforce::integration" action="salesforce/queue/index" resource="Magenest_Salesforce::queue"/>
+        <add id="Magenest_Salesforce::request" title="Request Daily Report" module="Magenest_Salesforce" sortOrder="37" parent="Magenest_Salesforce::integration" action="salesforce/request/index" resource="Magenest_Salesforce::request"/>
+        <add id="Magenest_Salesforce::config_salesforce" title="Configuration" module="Magenest_Salesforce" sortOrder="40" parent="Magenest_Salesforce::integration" action="adminhtml/system_config/edit/section/salesforcecrm/" resource="Magenest_Salesforce::config_salesforce"/>
+    </menu>
+</config>

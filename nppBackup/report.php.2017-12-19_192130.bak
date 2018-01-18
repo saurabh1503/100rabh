@@ -1,0 +1,70 @@
+<?php
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+$date = date('Y-m-d H:i:s');
+$fromDate = date('Y-m-d H:i:s', strtotime($date .' -1 day'));
+$strtmonth =date('Y-m-01 H:i:s',strtotime('this month'));
+$dates = array($fromDate,$strtmonth);
+$info='';
+foreach($dates as $from){
+$ordercollection = $objectManager->get('\Magento\Sales\Model\ResourceModel\Order\CollectionFactory')->create();
+$collection = 	$ordercollection->addAttributeToSelect('*')
+								->addFieldToFilter('created_at', array('from'=>$from, 'to'=>$date))
+								->addFieldToFilter('status', array('nin' => array('cancelled')));
+								
+											
+
+$total = 0;
+$sample =0;	
+$allqty=0;
+$sampleqty=0;	
+				
+ foreach($collection as $order){
+	 $totalqty = $order->getData('total_qty_ordered');
+	 $grandtotal = $order->getData('grand_total');
+	 $subtotal = $order->getData('subtotal');
+
+
+	 
+	 if ($subtotal == 0.99){
+		 $samplesum = $order->getData('grand_total');
+		 $sample += $samplesum;
+		 $sampleqty += $totalqty;
+		 
+	 }
+	 else{
+		 	 $total += $grandtotal;
+			$allqty += $totalqty;
+	 }
+
+ }
+ 
+$info = '<div class="Section1"><p><span lang="EN-US" style="font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;;border:solid windowtext 1.0pt;padding:0cm"><br>Efloors.com Automated Email System <u></u><u></u></span></p><p><b><span lang="EN-US" style="font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">Sales &amp; Traffic Report for Dec 13, 2017</span></b><span lang="EN-US" style="font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"><u></u><u></u></span></p><table class="" border="0" cellpadding="0"><tbody><tr><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal"><b>Total material sales (26):<u></u><u></u></b></p></td><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal" align="right" style="text-align:right">$24,538.20<u></u><u></u></p></td></tr><tr><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal"><b>Total sample sales (3):<u></u><u></u></b></p></td><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal" align="right" style="text-align:right">$15.84<u></u><u></u></p></td></tr><tr><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal"><b>Total sales (29):<u></u><u></u></b></p></td><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal" align="right" style="text-align:right">$24,554.04<u></u><u></u></p></td></tr></tbody></table><p><b><span lang="EN-US" style="font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">Month to Date for December, 2017</span></b><span lang="EN-US" style="font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"><u></u><u></u></span></p><table class="NormalTable" border="0" cellpadding="0"><tbody><tr><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal"><b>Total material sales (247):<u></u><u></u></b></p></td><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal" align="right" style="text-align:right">$278,110.38<u></u><u></u></p></td></tr><tr><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal"><b>Total sample sales (93):<u></u><u></u></b></p></td><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal" align="right" style="text-align:right">$336.56<u></u><u></u></p></td></tr><tr><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal"><b>Total sales (340):<u></u><u></u></b></p></td><td style="padding:.75pt .75pt .75pt .75pt"><p class="MsoNormal" align="right" style="text-align:right">$278,446.94<u></u><u></u></p></td></tr></tbody></table></div>';
+echo $from. '<br/>';
+echo $total. '<br/>';
+echo $allqty. '<br/>';
+echo $sample. '<br/>';
+echo $sampleqty. '<br/>';
+echo $info;
+}
+// $transportBuilder = $objectManager->create('\Magento\Framework\Mail\Template\TransportBuilder');
+				// $transport = $transportBuilder
+				// ->setToName('Saurabh')
+				// ->setBody($info)
+				// ->setSubject('Efloors.com Automated Email System')
+				// ->setFromEmail('abhisheks4@chetu.com')
+				// ->setToEmail('saurabhd@chetu.com')
+				// ->setType('html')
+                // ->getTransport();
+            // $transport->sendMessage();								
+?>
+
+
+
+

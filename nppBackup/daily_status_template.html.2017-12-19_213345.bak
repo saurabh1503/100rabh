@@ -1,0 +1,9 @@
+<!--@subject Efloors.com Automated Email System@-->
+<!--@vars {
+"var data.contactFirstName":"First Name",
+"var data.contactLastName":"Last Name",
+"var data.emailaddress":"Email",
+"var data.group1":"Who Am I?",
+"var data.contactComment":"Comments",
+"var data.Referrer":"Current Page"
+} @-->

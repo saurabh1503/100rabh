@@ -1,0 +1,133 @@
+<?php 
+use Magento\Framework\App\Bootstrap;
+include('app/bootstrap.php');
+$bootstrap = Bootstrap::create(BP, $_SERVER);
+$objectManager = $bootstrap->getObjectManager();
+$state = $objectManager->get('Magento\Framework\App\State');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$state->setAreaCode('frontend');
+
+// $date = date('Y-m-d H:i:s');
+// $fromDate = date('Y-m-d H:i:s', strtotime($date .' -150 day'));
+
+// $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+// $collection = 	$productCollection->addAttributeToSelect('sku')
+								// ->addFieldToFilter('created_at', array('from'=>$fromDate, 'to'=>$date))
+								// ->load();
+// // echo $collection->getSelect().'-----'.$date.'---'.$fromDate;
+
+// // die;
+// foreach ($collection as $product){
+     // echo 'sku  =  '.$product->getSku().'<br>';
+// }								
+								
+function ImportCSV2Array($filename)
+{
+    $row = 0;
+    $col = 0;
+ 
+    $handle = @fopen($filename, "r");
+    if ($handle) 
+    {
+        while (($row = fgetcsv($handle, 4096)) !== false) 
+        {
+            if (empty($fields)) 
+            {
+                $fields = $row;
+                continue;
+            }
+ 
+            foreach ($row as $k=>$value) 
+            {
+                $results[$col][$fields[$k]] = $value;
+            }
+            $col++;
+            unset($row);
+        }
+        if (!feof($handle)) 
+        {
+            echo "Error: unexpected fgets() failn";
+        }
+        fclose($handle);
+
+    }
+ 
+    return $results;
+}
+ 
+$filename = "nextopia-feed.csv";
+$csv = ImportCSV2Array($filename);
+//echo "<pre>"; print_r($csv);die;
+$output = fopen('temporary.csv', 'w');
+$modified = array('59918','59927','59928','11314');
+$array_opt = array();
+
+foreach ($modified as $modsku){
+
+foreach ($csv as $row)
+{
+	$array_opt = $row;
+	if($modsku==$row['sku']){
+		$array_opt['price'] ='55';
+	
+	echo $array_opt['sku']."--".$array_opt['price']."<br/>";
+	fputcsv($output, $array_opt);
+	}
+	
+
+}
+}
+
+fclose($output);
+
+
+// function joinFiles(array $files, $result) {
+    // if(!is_array($files)) {
+        // throw new Exception('`$files` must be an array');
+    // }
+
+    // $wH = fopen($result, "w+");
+
+    // foreach($files as $file) {
+		
+        // $fh = fopen($file, "r");
+		
+        // while(!feof($fh)) {
+            // fwrite($wH, fgets($fh));
+        // }
+		// //echo "<pre>"; print_r($fh);die;
+        // fclose($fh);
+        // unset($fh);
+        // fwrite($wH, "\n"); //usually last line doesn't have a newline
+    // }
+    // fclose($wH);
+    // unset($wH);
+// }
+
+
+//unlink('nextopia-feed.csv');
+rename('temporary.csv', 'nextopia-feed2.csv');
+//joinFiles(array('nextopia-feed.csv', 'nextopia-feed2.csv'), 'join3.csv');
+
+
+ini_set('auto_detect_line_endings',TRUE);
+if (($file3 = fopen("nextopia-feed.csv", "w")) !== FALSE) {
+  if (($file1 = fopen("nextopia-feed2.csv", "r")) !== FALSE) {
+    while (($file1Row = fgetcsv($file1)) !== FALSE) {
+      if (($file2 = fopen("nextopia-feed.csv", "r")) !== FALSE) {
+        while (($file2Row = fgetcsv($file2)) !== FALSE) {
+          if ( strtolower(trim($file2Row[0])) == strtolower(trim($file1Row[1])) )
+            fputcsv($file3, $file1Row);             
+        }
+        fclose($file2);
+      }
+    }
+    fclose($file1);
+  }
+  fclose($file3);
+}
+ini_set('auto_detect_line_endings',FALSE);
+
+?>							
+
+

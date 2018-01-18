@@ -1,0 +1,81 @@
+<?php
+ $popupblockid          =  $this->helper('Vsourz\Exitscreen\Helper\Data')->getBlockId();
+ $cmsPage               =  $this->helper('Vsourz\Exitscreen\Helper\Data')->showPopUp();
+ $popup_height          =  $this->helper('Vsourz\Exitscreen\Helper\Data')->getHeight();
+ $popup_width           =  $this->helper('Vsourz\Exitscreen\Helper\Data')->getWidth();
+ $popup_coockie         =  $this->helper('Vsourz\Exitscreen\Helper\Data')->getCookieExpire();
+ $popup_delay           =  $this->helper('Vsourz\Exitscreen\Helper\Data')->getDelayTime();
+ $blocktitle            =  $this->helper('Vsourz\Exitscreen\Helper\Data')->getBlockTitle();
+if($cmsPage == "Y"){ ?>
+    <div class="es-outer-bg">&nbsp;</div>
+    <div class="es-pop-up" style="height:<?php echo $popup_height; ?>; width:<?php echo $popup_width; ?>">
+        <a id="close" href="javascript">X</a>
+        <h3><?php echo $blocktitle; ?></h3>
+        <div class="pop-cont">
+            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($popupblockid)->toHtml(); ?>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        require([
+            'jquery'
+        ], function ($) {
+
+            function setCookie(cname, cvalue, exdays){
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                // d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                // converts the string to UTC time
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            }
+
+            function getCookie(cname){
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i < ca.length; i++){
+                    var c = ca[i];
+                    // substring(1) removes the blank space in charAt(0)
+                    while (c.charAt(0)==' ') c = c.substring(1);
+                    //indexOf(name) 0 indicates we have found the cookie
+                    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+                }
+                return "";
+            }
+
+            $(window).on('load', function(event) {
+               // event.preventDefault();
+                if(getCookie("esdelay") != "Y"){
+                    // sets delay for displaying es-pop-up
+                    setCookie("esdelay", "Y", <?php echo $popup_delay ; ?>);
+                }
+                $(window).on('mouseout', function(event) {
+                    event = event ? event : window.event;
+                    var from = event.relatedTarget || event.toElement;
+
+                    if (from == undefined){
+                        if($(window).width() >= event.offsetX){
+                        // stop your drag event here
+                        // for now we can just use an alert
+                            if(getCookie("esdelay")!="Y"){
+                                if(getCookie("exitscreen")!="Y"){
+                                    $('.es-outer-bg').fadeIn();
+                                    $('.es-pop-up').addClass('open');
+                                    setCookie("exitscreen","Y",<?php echo $popup_coockie; ?>);
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+                $(document).on('click','.es-pop-up #close',function(event){
+                    event.preventDefault();
+                    $('.es-outer-bg').fadeOut();
+                    $('.es-pop-up').removeClass('open');
+                });
+            });
+        });
+    </script>
+<?php } ?>

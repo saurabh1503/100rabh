@@ -1,0 +1,38 @@
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_Salesforce extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_Salesforce
+ * @author ThaoPV
+ */
+-->
+<script>
+    require([
+        "jquery",
+        "getSalesFields",
+        "domReady!"
+    ], function ($, Fields) {
+        var fields = new Fields({url : '<?php echo $this->getUpdateUrl()?>'});
+
+        $("button[data-ui-id='salesforce-map-edit-updateallfields-button']").click(function(){
+            var url = '<?php echo $this->getUpdateAllFields() ?>';
+            jQuery.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    form_key: FORM_KEY
+                },
+                showLoader: true,
+                success: function(){
+                    alert('Update success');
+                }
+            });
+        });
+    });
+</script>

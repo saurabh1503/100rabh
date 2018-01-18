@@ -1,0 +1,27 @@
+<?php 
+	/** @var $block \Efloor\Review\Block\PostList */ 
+?>
+
+
+<h1><?php echo __('Customer Offlinechat') ?></h1>
+<ul class="review-post-list">
+    
+<?php /** @var $post \Efloor\Review\Model\Post */ ?>
+<?php foreach ($block->getPosts() as $post): ?>
+    <li class="review-post-list-item">
+      
+
+        <div class="review-post-item-content">
+            <?php echo $post->getFullname(); ?>
+        </div>
+        
+          <h4 class="review-post-item-title" style="text-align:right">
+          <i><?php echo $post->getEmail() .','. $post->getPhone(); ?> </i>
+        </h4>
+
+        <div class="review-post-item-meta">
+         
+        </div>
+    </li>
+<?php endforeach; ?>
+</ul>

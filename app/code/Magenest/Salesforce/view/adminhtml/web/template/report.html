@@ -1,0 +1,62 @@
+<button class="button action-configure" data-bind=" click: getHistory" data-role="get-report"><span>Get Report</span></button>
+<div class="show-report-request" data-block="show-report-result" style="display: none">
+    <div class="admin__page-section-item order-information">
+        <div class="admin__page-section-item-title">
+            <span class="title">Requests</span>
+        </div>
+        <div class="admin__page-section-item-content">
+            <table class="admin__table-secondary">
+                <thead>
+                <th>Date</th>
+                <th>REST API Requests</th>
+                <th>BULK API Requests</th>
+                </thead>
+                <tbody data-bind="foreach: requestLogList, blockLoader: isLoading">
+                <tr>
+                    <td data-bind="text: date"></td>
+                    <td data-bind="text: rest_request"></td>
+                    <td data-bind="text: bulk_request"></td>
+                </tr>
+                </tbody>
+                <tbody data-bind="visible: requestLogList().length < 1">
+                <tr>
+                    <td>
+                        <span>We couldn't find any records.</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="admin__page-section-item order-account-information">
+        <div class="admin__page-section-item-title">
+            <span class="title">Detail</span>
+        </div>
+        <div class="admin__page-section-item-content">
+            <table class="admin__table-secondary">
+                <thead>
+                <th>Type</th>
+                <th>Total Request</th>
+                <th>Request Failed</th>
+                </thead>
+                <tbody data-bind="foreach: logList, blockLoader: isLoading">
+                <tr>
+                    <td data-bind="text: salesforce_table"></td>
+                    <td data-bind="text: count"></td>
+                    <td data-bind="text: count_failed"></td>
+                </tr>
+                </tbody>
+                <tbody data-bind="visible: logList().length < 1">
+                <tr>
+                    <td>
+                        <span>We couldn't find any records.</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="show-report-request" data-block="show-no-data">
+</div>

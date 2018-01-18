@@ -1,0 +1,47 @@
+<?php 
+// $row = 1;
+// if (($handle = fopen("google-data-feed.csv", "r")) && $myfile = fopen("newfile.txt", "w")) {
+    // while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        // $num = count($data);
+        // echo "<p> $num fields in line $row: <br /></p>\n";
+        // $row++;
+        // fputcsv($myfile, $data);
+    // }
+    // fclose($handle);
+    // fclose($myfile);
+// }
+
+
+
+$lines = file('google-data-feed.csv');
+
+$c_lines = count($lines);
+
+$i = 1;
+for($i=1;$i<$c_lines;$i++) {
+    $array1 = explode(",", $lines[$i]);
+
+    $new_line = "ОПДДС@@" . $array1[3]  . "#" . $array1[4] . "#201##987" ."#" .$array2[2] ."#" . $array1[1] 
+    . "#####" . $array1[11] . "#" . $array2[5]  . "@@" . $array3[2]. "@@" . 40111 . "@@" . $array4[0]
+    . "$" . $array4[1] . "$" . $array4[2] . "$" . $array4[3] . "#" . $array1[3] . "#" . $array1[4] 
+    . "#" .$array2[2]. "#" .$array1[5] ."#0#0#0#0#0#0@@" ;
+    $data = $new_line . "\n";
+}
+for($i=1;$i<$c_lines;$i++) {
+$array11 = explode(",", $lines[$i++]);
+$new_line11 = "ОПДДС@@" . $array11[3]  . "#" . $array11[4] . "#201##987" ."#" .$array2[2] ."#" . $array11[1] 
+    . "#####" . $array11[11] . "#" . $array2[5]  . "@@" . $array3[2]. "@@" . 40111 . "@@" . $array4[0]
+    . "$" . $array4[1] . "$" . $array4[2] . "$" . $array4[3] . "#" . $array11[3] . "#" . $array11[4] 
+    . "#" .$array2[2]. "#" .$array11[5] ."#0#0#0#0#0#0@@" ;
+    $data11 = $new_line11 . "\n";
+    }
+echo nl2br($data);
+echo nl2br($data11);
+$File = "file.txt"; 
+ $Handle = fopen($File, 'w');
+ $Data = $data;
+ fwrite($Handle, $Data);
+  print "Data Written"; 
+ fclose($Handle);  
+
+?>

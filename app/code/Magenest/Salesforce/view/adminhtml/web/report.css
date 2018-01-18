@@ -1,0 +1,24 @@
+.select-date #start-date,
+.select-date #end-date,
+.select-date #start-date div,
+.select-date #end-date div,
+.select-date #start-date label,
+.select-date #end-date label{
+    display: inline-block;
+}
+.select-date #report-request{
+    display: inline;
+}
+.select-date #report-request .show-report-request{
+    display: block;
+    padding-top:20px;
+    position: relative;
+    min-height: 200px;
+}
+.select-date {
+    margin-bottom: 20px;
+}
+.admin__table-secondary {
+    position: relative;
+    min-height: 100px;
+}
